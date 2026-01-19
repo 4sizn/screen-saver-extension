@@ -1,0 +1,28 @@
+{
+  "name": "screen-saver-web",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@thedutchcoder/postcss-rem-to-px": "^0.0.2",
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "@types/webextension-polyfill": "^0.12.4",
+    "@wxt-dev/module-react": "^1.1.5",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3",
+    "wxt": "^0.20.13"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "webextension-polyfill": "^0.12.0"
+  }
+}
