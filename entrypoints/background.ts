@@ -102,7 +102,7 @@ export default defineBackground({
 
           // RUNTIME VERIFICATION: Confirm images actually loaded
           const db = await new Promise<IDBDatabase>((resolve, reject) => {
-            const request = indexedDB.open('screen-saver-images', 1);
+            const request = indexedDB.open('screen-saver-images', 2);
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
           });
