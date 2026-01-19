@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-19)
 ## Current Position
 
 Phase: 5 of 5 (Polish & Integration)
-Plan: 2 of ? (in progress)
+Plan: 3 of ? (in progress)
 Status: Phase 5 in progress
-Last activity: 2026-01-19 - Completed 05-02-PLAN.md
+Last activity: 2026-01-19 - Completed 05-03-PLAN.md
 
-Progress: [████████░░] 89% (16 of 18 plans complete)
+Progress: [█████████░] 94% (17 of 18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 11.1 min
-- Total execution time: 2.98 hours
+- Total execution time: 3.15 hours
 
 **By Phase:**
 
@@ -31,11 +31,11 @@ Progress: [████████░░] 89% (16 of 18 plans complete)
 | 02-content-storage | 5 | 61 min | 12.2 min |
 | 03-settings-infrastructure | 3 | 12 min | 4 min |
 | 04-display-&-slideshow | 2 | 47 min | 23.5 min |
-| 05-polish-&-integration | 2 | 14 min | 7 min |
+| 05-polish-&-integration | 3 | 24 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (4 min), 04-01 (2 min), 04-02 (45 min), 05-01 (4 min), 05-02 (10 min)
-- Trend: Phase 5 verification tasks completing efficiently, production build validated
+- Last 5 plans: 04-01 (2 min), 04-02 (45 min), 05-01 (4 min), 05-02 (10 min), 05-03 (10 min)
+- Trend: Phase 5 distribution preparation efficient, packaging and documentation complete
 
 *Updated after each plan completion*
 
@@ -162,6 +162,12 @@ Recent decisions affecting current work:
 - Comprehensive 10-step QA checklist - covers all functionality from Phases 1-4 including edge cases and performance
 - Pre-distribution verification pattern - always verify production builds with fresh install before creating distribution packages
 
+**From 05-03 execution:**
+- Firefox sources ZIP verified buildable - extracted, npm install, npm run build produces functional extension
+- Privacy policy emphasizes local-only storage - no data collection or tracking, all data in IndexedDB/chrome.storage
+- Safari distribution deferred - requires macOS tooling and $99/year Apple Developer account
+- Store listing includes Firefox source code build instructions for reviewers
+
 ### Pending Todos
 
 None currently identified.
@@ -179,11 +185,11 @@ None currently identified.
 
 ## Session Continuity
 
-Last session: 2026-01-19T13:53:17Z
-Stopped at: Completed 05-02-PLAN.md
+Last session: 2026-01-19T14:07:27Z
+Stopped at: Completed 05-03-PLAN.md
 Resume file: None
-Next: Continue Phase 5 - Distribution Preparation (Wave 3)
+Next: Continue Phase 5 - Final verification or project completion
 
 ---
 *Created: 2026-01-19*
-*Last updated: 2026-01-19T13:53:17Z*
+*Last updated: 2026-01-19T14:07:27Z*
