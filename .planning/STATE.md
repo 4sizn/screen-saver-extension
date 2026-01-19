@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-01-19)
 ## Current Position
 
 Phase: 1 of 5 (Foundation & Activation)
-Plan: 1 of TBD in current phase
+Plan: 2 of TBD in current phase
 Status: In progress
-Last activity: 2026-01-19 - Completed 01-01-PLAN.md
+Last activity: 2026-01-19 - Completed 01-02-PLAN.md
 
-Progress: [█░░░░░░░░░] 10%
+Progress: [██░░░░░░░░] 20%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 12 min
-- Total execution time: 0.2 hours
+- Total plans completed: 2
+- Average duration: 8 min
+- Total execution time: 0.25 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation-&-activation | 1 | 12 min | 12 min |
+| 01-foundation-&-activation | 2 | 15 min | 8 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (12 min)
-- Trend: Establishing baseline
+- Last 5 plans: 01-01 (12 min), 01-02 (3 min)
+- Trend: Accelerating - familiarity with WXT patterns
 
 *Updated after each plan completion*
 
@@ -56,6 +56,12 @@ Recent decisions affecting current work:
 - Event listeners at top level - MV3 service worker compatibility
 - PostCSS rem-to-px with baseValue 16 - Fixes Tailwind rem units in Shadow DOM
 
+**From 01-02 execution:**
+- Window-level keydown listener - Ensures ESC capture even if focus moves to iframe
+- Shadow DOM cssInjectionMode: 'ui' - Isolates extension styles from host page CSS
+- Fixed positioning with max z-index - Provides full-screen coverage without Fullscreen API
+- Tailwind v4 @tailwindcss/postcss plugin - Required for Tailwind v4 PostCSS integration
+
 ### Pending Todos
 
 None yet.
@@ -64,14 +70,16 @@ None yet.
 
 **From 01-01:**
 - Empty sound file (public/sounds/click.mp3 is 0 bytes) - needs real audio added in future plan
-- No content script yet - icon click shows notification but no overlay until plan 02
+
+**Resolved:**
+- ~~No content script yet~~ - RESOLVED in 01-02: Content script with Shadow DOM overlay working
 
 ## Session Continuity
 
 Last session: 2026-01-19 (plan execution)
-Stopped at: Completed 01-01-PLAN.md - WXT project initialized with background service worker
+Stopped at: Completed 01-02-PLAN.md - Content script with Shadow DOM overlay and ESC key deactivation
 Resume file: None
 
 ---
 *Created: 2026-01-19*
-*Last updated: 2026-01-19T05:16:27Z*
+*Last updated: 2026-01-19T05:22:18Z*
