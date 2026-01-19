@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Activation** - Extension scaffold with cross-browser support and basic activation
 - [x] **Phase 2: Content Storage** - Image storage infrastructure and management UI
-- [ ] **Phase 3: Settings Infrastructure** - Settings page with persistence and configuration
+- [x] **Phase 3: Settings Infrastructure** - Settings page with persistence and configuration
 - [ ] **Phase 4: Display & Slideshow** - Full-screen overlay with image rendering
 - [ ] **Phase 5: Polish & Integration** - Final integration, testing, and distribution readiness
 
@@ -71,9 +71,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Settings storage foundation (IndexedDB v2 migration, WXT displaySettings)
-- [ ] 03-02-PLAN.md — Display settings UI (fit selector and color picker)
-- [ ] 03-03-PLAN.md — Image enable/disable toggles (Switch controls in ImageList)
+- [x] 03-01-PLAN.md — Settings storage foundation (IndexedDB v2 migration, WXT displaySettings)
+- [x] 03-02-PLAN.md — Display settings UI (fit selector and color picker)
+- [x] 03-03-PLAN.md — Image enable/disable toggles (Switch controls in ImageList)
 
 ### Phase 4: Display & Slideshow
 **Goal**: Screen saver displays images in full-screen overlay with proper rendering
@@ -85,10 +85,11 @@ Plans:
   3. Image remains static until user deactivates (no automatic transitions)
   4. Image displays with user-configured fit option (cover or contain)
   5. Background color displays correctly for images that don't fill screen
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- TBD (will be created during plan-phase)
+- [ ] 04-01-PLAN.md — Image display implementation (loading, rendering, blob URL lifecycle)
+- [ ] 04-02-PLAN.md — Visual verification across fit modes and settings
 
 ### Phase 5: Polish & Integration
 **Goal**: Extension is polished, tested across browsers, and ready for distribution
@@ -115,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation & Activation | 5/5 | ✓ Complete | 2026-01-19 |
 | 2. Content Storage | 5/5 | ✓ Complete | 2026-01-19 |
 | 3. Settings Infrastructure | 3/3 | ✓ Complete | 2026-01-19 |
-| 4. Display & Slideshow | 0/TBD | Not started | - |
+| 4. Display & Slideshow | 0/2 | Not started | - |
 | 5. Polish & Integration | 0/TBD | Not started | - |
 
 ---
