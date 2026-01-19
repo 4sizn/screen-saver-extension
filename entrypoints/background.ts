@@ -1,6 +1,7 @@
 import { browser } from 'wxt/browser';
 import type { Message } from '@/lib/messages';
 import { getActivationState, setActivationState, clearTabState } from '@/lib/storage';
+import { loadDefaultImages } from '@/lib/defaultImages';
 
 export default defineBackground({
   type: 'module',
@@ -90,6 +91,34 @@ export default defineBackground({
     // Tab cleanup - registered at top level
     browser.tabs.onRemoved.addListener((tabId) => {
       clearTabState(tabId);
+    });
+
+    // Load default images on first install
+    browser.runtime.onInstalled.addListener(async (details) => {
+      if (details.reason === 'install') {
+        console.log('Extension installed - loading default images');
+        try {
+          await loadDefaultImages();
+
+          // RUNTIME VERIFICATION: Confirm images actually loaded
+          const { openDB } = await import('idb');
+          const db = await openDB('screen-saver-images', 1);
+          const count = await db.count('images');
+
+          if (count === 0) {
+            console.error('VERIFICATION FAILED: Default images did not load (count: 0)');
+          } else {
+            console.log(`Default images loaded successfully (verified: ${count} images in IndexedDB)`);
+          }
+        } catch (error) {
+          console.error('Failed to load default images:', error);
+        }
+      }
+
+      if (details.reason === 'update') {
+        console.log('Extension updated to version', browser.runtime.getManifest().version);
+        // No action needed - default images already loaded on install
+      }
     });
 
     // Initialize badge on startup - set gray badge with space for all tabs
