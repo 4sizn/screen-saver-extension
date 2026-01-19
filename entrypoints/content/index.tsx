@@ -30,6 +30,17 @@ export default defineContentScript({
     browser.runtime.onMessage.addListener((message: Message) => {
       if (message.type === 'ACTIVATE') {
         ui.mount();
+
+        // Play activation sound (works in content script, not in service worker)
+        try {
+          const audio = new Audio(browser.runtime.getURL('/sounds/click.wav'));
+          audio.volume = 0.5;
+          audio.play().catch(err => {
+            console.log('Could not play sound:', err);
+          });
+        } catch (error) {
+          console.log('Could not create audio:', error);
+        }
       } else if (message.type === 'DEACTIVATE') {
         ui.remove();
       }
