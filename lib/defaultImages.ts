@@ -3,21 +3,21 @@ import { browser } from 'wxt/browser';
 
 // TODO: Replace placeholder images with real Unsplash nature images
 export const DEFAULT_IMAGES = [
-  '/images/defaults/nature-01.jpg',
-  '/images/defaults/nature-02.jpg',
-  '/images/defaults/nature-03.jpg',
-  '/images/defaults/nature-04.jpg',
-  '/images/defaults/nature-05.jpg',
-  '/images/defaults/nature-06.jpg',
-  '/images/defaults/nature-07.jpg',
-  '/images/defaults/nature-08.jpg',
-  '/images/defaults/nature-09.jpg',
-  '/images/defaults/nature-10.jpg',
-  '/images/defaults/nature-11.jpg',
-  '/images/defaults/nature-12.jpg',
-  '/images/defaults/nature-13.jpg',
-  '/images/defaults/nature-14.jpg',
-  '/images/defaults/nature-15.jpg',
+  'images/defaults/nature-01.jpg',
+  'images/defaults/nature-02.jpg',
+  'images/defaults/nature-03.jpg',
+  'images/defaults/nature-04.jpg',
+  'images/defaults/nature-05.jpg',
+  'images/defaults/nature-06.jpg',
+  'images/defaults/nature-07.jpg',
+  'images/defaults/nature-08.jpg',
+  'images/defaults/nature-09.jpg',
+  'images/defaults/nature-10.jpg',
+  'images/defaults/nature-11.jpg',
+  'images/defaults/nature-12.jpg',
+  'images/defaults/nature-13.jpg',
+  'images/defaults/nature-14.jpg',
+  'images/defaults/nature-15.jpg',
 ];
 
 /**
@@ -71,7 +71,7 @@ export async function loadDefaultImages(): Promise<void> {
 
       console.log(`Loaded default image ${i + 1}/${DEFAULT_IMAGES.length}`);
     } catch (error) {
-      console.error(`Failed to load default image ${i + 1}:`, error);
+      console.error(`Failed to load default image ${i + 1}:`, error instanceof Error ? error.message : String(error), error);
     }
   }
 
