@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
+import ImageUpload from './components/ImageUpload';
+import ImageList from './components/ImageList';
 
 function OptionsApp() {
   return (
@@ -14,11 +16,8 @@ function OptionsApp() {
         </header>
 
         <main>
-          <div className="rounded-lg bg-white p-6 shadow">
-            <p className="text-gray-600">
-              Image management components will be added in the next plan.
-            </p>
-          </div>
+          <ImageUpload />
+          <ImageList />
         </main>
       </div>
     </div>
