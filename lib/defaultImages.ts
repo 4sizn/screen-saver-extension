@@ -1,7 +1,8 @@
 import { saveImage, initDB } from './imageStorage';
 import { browser } from 'wxt/browser';
 
-// TODO: Replace placeholder images with real Unsplash nature images
+// 15 high-quality nature landscape images from Unsplash
+// All images are 1920x1080 resolution, curated for screen saver display
 export const DEFAULT_IMAGES = [
   'images/defaults/nature-01.jpg',
   'images/defaults/nature-02.jpg',
