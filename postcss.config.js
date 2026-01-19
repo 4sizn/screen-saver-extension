@@ -1,6 +1,6 @@
 export default {
   plugins: {
-    tailwindcss: {},
+    '@tailwindcss/postcss': {},
     autoprefixer: {},
     '@thedutchcoder/postcss-rem-to-px': {
       baseValue: 16
