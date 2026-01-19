@@ -95,8 +95,10 @@ export default defineBackground({
 
     // Load default images on first install
     browser.runtime.onInstalled.addListener(async (details) => {
+      console.log('[DEBUG] onInstalled event fired. Reason:', details.reason, 'Version:', browser.runtime.getManifest().version);
+
       if (details.reason === 'install') {
-        console.log('Extension installed - loading default images');
+        console.log('[INSTALL] Extension installed - loading default images');
         try {
           await loadDefaultImages();
 
@@ -127,8 +129,12 @@ export default defineBackground({
       }
 
       if (details.reason === 'update') {
-        console.log('Extension updated to version', browser.runtime.getManifest().version);
+        console.log('[UPDATE] Extension updated to version', browser.runtime.getManifest().version);
         // No action needed - default images already loaded on install
+      }
+
+      if (details.reason !== 'install' && details.reason !== 'update') {
+        console.log('[DEBUG] Unhandled install reason:', details.reason);
       }
     });
 
