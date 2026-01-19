@@ -73,11 +73,35 @@ export default function ScreenSaverOverlay() {
   }, []);
 
   return (
-    <div className="overlay-container">
-      <div className="placeholder-content">
-        <p className="text-white text-2xl">Screen Saver Active</p>
-        <p className="text-white/70 text-sm mt-2">Press ESC to exit</p>
-      </div>
+    <div
+      className="image-container"
+      style={{ backgroundColor: settings.backgroundColor }}
+    >
+      {imageState === 'loading' && (
+        <div className="flex items-center justify-center">
+          <p className="text-white text-xl">Loading...</p>
+        </div>
+      )}
+
+      {imageState === 'error' && (
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-white text-xl">Unable to load image</p>
+          <p className="text-white/70 text-sm mt-2">Check settings to enable images</p>
+        </div>
+      )}
+
+      {imageSrc && (
+        <img
+          src={imageSrc}
+          alt="Screen saver"
+          className={`screen-saver-image transition-opacity duration-300 ${
+            imageState === 'loaded' ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ objectFit: settings.imageFit }}
+          onLoad={() => setImageState('loaded')}
+          onError={() => setImageState('error')}
+        />
+      )}
     </div>
   );
 }
