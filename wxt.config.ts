@@ -20,5 +20,11 @@ export default defineConfig({
       default_title: 'Toggle Screen Saver',
       // NO default_popup - required for onClicked to fire
     },
+    web_accessible_resources: [
+      {
+        resources: ['sounds/*.wav'],
+        matches: ['<all_urls>'],
+      },
+    ],
   },
 });
