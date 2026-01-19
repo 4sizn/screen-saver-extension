@@ -30,12 +30,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. User can deactivate screen saver by clicking extension icon again
   4. User can deactivate screen saver by pressing ESC key
   5. Extension icon shows visual badge indicating active/inactive state
-**Plans**: 3 plans
+**Plans**: 5 plans
 
 Plans:
 - [ ] 01-01-PLAN.md — Project setup & background service worker with activation logic
 - [ ] 01-02-PLAN.md — Content script with Shadow DOM overlay and ESC handler
 - [ ] 01-03-PLAN.md — Extension assets and cross-browser verification
+- [ ] 01-04-PLAN.md — Fix TypeScript type error in audio path (gap closure)
+- [ ] 01-05-PLAN.md — Cross-browser verification testing (gap closure)
 
 ### Phase 2: Content Storage
 **Goal**: Users can upload, store, and manage custom images locally
@@ -104,7 +106,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Activation | 0/3 | Not started | - |
+| 1. Foundation & Activation | 0/5 | Not started | - |
 | 2. Content Storage | 0/TBD | Not started | - |
 | 3. Settings Infrastructure | 0/TBD | Not started | - |
 | 4. Display & Slideshow | 0/TBD | Not started | - |
