@@ -10,29 +10,29 @@ See: .planning/PROJECT.md (updated 2026-01-19)
 ## Current Position
 
 Phase: 2 of 5 (Content Storage)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-19 - Completed 02-03-PLAN.md
+Last activity: 2026-01-19 - Completed 02-04-PLAN.md
 
-Progress: [███████░░░] 70% (Phase 2: 3/5 plans complete)
+Progress: [████████░░] 80% (Phase 2: 4/5 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
-- Average duration: 7 min
-- Total execution time: 0.95 hours
+- Total plans completed: 9
+- Average duration: 6 min
+- Total execution time: 0.98 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation-&-activation | 5 | 50 min | 10 min |
-| 02-content-storage | 3 | 12 min | 4 min |
+| 02-content-storage | 4 | 14 min | 3.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-04 (< 1 min), 01-05 (5 min), 02-02 (3 min), 02-01 (6 min), 02-03 (1 min)
-- Trend: Phase 2 plans executing very rapidly, infrastructure setup complete
+- Last 5 plans: 01-05 (5 min), 02-02 (3 min), 02-01 (6 min), 02-03 (1 min), 02-04 (2 min)
+- Trend: Phase 2 executing at exceptional speed, well-designed foundation enabling rapid UI development
 
 *Updated after each plan completion*
 
@@ -98,6 +98,12 @@ Recent decisions affecting current work:
 - Database deduplication check - Load defaults only on first install (count check prevents duplicates)
 - WXT options auto-detection - entrypoints/options/ with manifest.open_in_tab meta tag generates options_ui in manifest
 
+**From 02-04 execution:**
+- Custom event dispatch for component refresh - ImageUpload/ImageList are siblings, avoiding prop drilling via 'image-uploaded' event
+- Triple visual indicator for default images - Badge overlay + ring border + shield icon ensures at-a-glance distinction
+- Object URL cleanup in useEffect return - Prevents memory leaks from blob URLs
+- Pointer and keyboard sensors for accessibility - Drag-and-drop works with arrow keys for keyboard-only users
+
 ### Pending Todos
 
 - Replace placeholder images with real Unsplash nature images (lib/defaultImages.ts TODO comment)
@@ -114,10 +120,10 @@ None currently identified.
 ## Session Continuity
 
 Last session: 2026-01-19 (Phase 2 in progress)
-Stopped at: Completed 02-03-PLAN.md
+Stopped at: Completed 02-04-PLAN.md
 Resume file: None
-Next: Continue with remaining Phase 2 plans (02-04, 02-05)
+Next: Continue with final Phase 2 plan (02-05)
 
 ---
 *Created: 2026-01-19*
-*Last updated: 2026-01-19T08:52:31Z*
+*Last updated: 2026-01-19T08:57:21Z*
