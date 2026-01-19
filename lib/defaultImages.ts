@@ -28,7 +28,10 @@ export const DEFAULT_IMAGES = [
  * first extension install.
  */
 export async function loadDefaultImages(): Promise<void> {
+  console.log('[loadDefaultImages] Function called');
+
   const db = await initDB();
+  console.log('[loadDefaultImages] Database initialized:', db.name, 'version:', db.version);
 
   // Count existing images
   const count = await new Promise<number>((resolve, reject) => {
@@ -39,27 +42,33 @@ export async function loadDefaultImages(): Promise<void> {
     request.onerror = () => reject(request.error);
   });
 
+  console.log('[loadDefaultImages] Current image count in DB:', count);
+
   // Only load if database is empty (first install)
   if (count > 0) {
-    console.log('Default images already loaded, skipping');
+    console.log('[loadDefaultImages] Default images already loaded, skipping');
     return;
   }
 
-  console.log('Loading default images...');
+  console.log('[loadDefaultImages] Starting to load', DEFAULT_IMAGES.length, 'default images...');
 
   for (let i = 0; i < DEFAULT_IMAGES.length; i++) {
     const imagePath = DEFAULT_IMAGES[i];
     // Cast to any for browser.runtime.getURL - WXT's type system expects PublicPath
     // but our paths are dynamically generated strings
     const url = browser.runtime.getURL(imagePath as any);
+    console.log(`[loadDefaultImages] Image ${i + 1}: path="${imagePath}" url="${url}"`);
 
     try {
       const response = await fetch(url);
+      console.log(`[loadDefaultImages] Image ${i + 1}: fetch response status=${response.status}`);
+
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
 
       const blob = await response.blob();
+      console.log(`[loadDefaultImages] Image ${i + 1}: blob received, size=${blob.size} bytes, type=${blob.type}`);
 
       // Use predictable IDs for default images (default-1, default-2, etc.)
       await saveImage(
@@ -69,11 +78,11 @@ export async function loadDefaultImages(): Promise<void> {
         true // isDefault flag prevents deletion
       );
 
-      console.log(`Loaded default image ${i + 1}/${DEFAULT_IMAGES.length}`);
+      console.log(`[loadDefaultImages] Image ${i + 1}/${DEFAULT_IMAGES.length} saved to IndexedDB`);
     } catch (error) {
-      console.error(`Failed to load default image ${i + 1}:`, error instanceof Error ? error.message : String(error), error);
+      console.error(`[loadDefaultImages] Failed to load image ${i + 1}:`, error instanceof Error ? error.message : String(error), error);
     }
   }
 
-  console.log('Default images loaded successfully');
+  console.log('[loadDefaultImages] All default images loaded successfully');
 }
