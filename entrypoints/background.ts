@@ -71,10 +71,18 @@ export default defineBackground({
 
   main() {
     // Message listener for content script requests
-    browser.runtime.onMessage.addListener((message: Message, sender) => {
+    browser.runtime.onMessage.addListener((message: Message, sender, sendResponse) => {
       // Handle GET_RANDOM_IMAGE request from content script
       if (message.type === 'GET_RANDOM_IMAGE') {
-        return handleGetRandomImage();
+        // Use sendResponse callback for async response
+        handleGetRandomImage().then(sendResponse).catch(error => {
+          console.error('[onMessage] Error handling GET_RANDOM_IMAGE:', error);
+          sendResponse({
+            success: false,
+            error: error instanceof Error ? error.message : String(error),
+          });
+        });
+        return true; // Indicates async response via sendResponse
       }
 
       // Handle DEACTIVATE request
@@ -96,8 +104,8 @@ export default defineBackground({
         });
       }
 
-      // Return undefined for messages that don't need a response
-      return undefined;
+      // Synchronous response (no return value needed)
+      return false;
     });
 
     // Icon click handler - registered at top level (not in async function)
