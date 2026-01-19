@@ -27,14 +27,21 @@ export default function ScreenSaverOverlay() {
         console.log('[ScreenSaver] Total images in DB:', allImages.length);
         setSettings(loadedSettings);
 
-        // Filter to enabled images only
-        let enabledImages = allImages.filter(img => img.isEnabled);
-        console.log('[ScreenSaver] Enabled images:', enabledImages.length);
+        // PRIORITY SYSTEM: Custom images take precedence over defaults
+        // 1. Try custom enabled images first (user uploads)
+        let enabledImages = allImages.filter(img => !img.isDefault && img.isEnabled);
+        console.log('[ScreenSaver] Enabled custom images:', enabledImages.length);
 
-        // Fallback to default images if no enabled images
+        // 2. Fallback to enabled default images only if no custom images
+        if (enabledImages.length === 0) {
+          enabledImages = allImages.filter(img => img.isDefault && img.isEnabled);
+          console.log('[ScreenSaver] Using enabled default images fallback:', enabledImages.length);
+        }
+
+        // 3. Last resort: use all default images (even if disabled)
         if (enabledImages.length === 0) {
           enabledImages = allImages.filter(img => img.isDefault);
-          console.log('[ScreenSaver] Using default images fallback:', enabledImages.length);
+          console.log('[ScreenSaver] Using all default images (last resort):', enabledImages.length);
         }
 
         // Select random image
