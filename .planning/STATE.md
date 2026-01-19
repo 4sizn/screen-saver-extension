@@ -21,7 +21,7 @@ Progress: [████▓░░░░░] 48% (12 of 25 plans complete)
 **Velocity:**
 - Total plans completed: 12
 - Average duration: 9.5 min
-- Total execution time: 1.90 hours
+- Total execution time: 1.97 hours
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [████▓░░░░░] 48% (12 of 25 plans complete)
 |-------|-------|-------|----------|
 | 01-foundation-&-activation | 5 | 50 min | 10 min |
 | 02-content-storage | 5 | 61 min | 12.2 min |
-| 03-settings-infrastructure | 2 | 4 min | 2 min |
+| 03-settings-infrastructure | 2 | 8 min | 4 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (1 min), 02-04 (2 min), 02-05 (47 min), 03-01 (2 min), 03-03 (2 min)
-- Trend: Phase 3 progressing rapidly - UI component plans executing in ~2 min each
+- Last 5 plans: 02-04 (2 min), 02-05 (47 min), 03-01 (2 min), 03-03 (2 min), 03-02 (4 min)
+- Trend: Phase 3 progressing rapidly - settings infrastructure plans executing in 2-4 min each
 
 *Updated after each plan completion*
 
@@ -121,6 +121,13 @@ Recent decisions affecting current work:
 - Cover fit and black background as defaults - neutral baseline for letterboxing
 - Correct import path: 'wxt/utils/storage' not 'wxt/storage' - based on WXT package.json exports structure
 
+**From 03-02 execution:**
+- Radio buttons over dropdown for fit selector - only 2 options, descriptions help understanding
+- Debounced color auto-save (300ms) - prevents excessive chrome.storage writes during drag (60+ per second)
+- Immediate fit auto-save - no drag interaction, instant feedback expected
+- Inline color picker - always visible, no click-to-open friction
+- Auto-save pattern: immediate for discrete changes, debounced for continuous input
+
 **From 03-03 execution:**
 - Switch-only visual feedback without thumbnail overlay - avoids ambiguity (disabled vs poor quality?)
 - 60% opacity on disabled images - subtle visual distinction without being intrusive
@@ -144,10 +151,10 @@ None currently identified.
 ## Session Continuity
 
 Last session: 2026-01-19 (Phase 3 in progress)
-Stopped at: Completed 03-03-PLAN.md
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None
-Next: Continue Phase 3 (Settings Infrastructure) - Plan 03-02 remaining
+Next: Continue Phase 3 (Settings Infrastructure) - 2 of 3 plans complete
 
 ---
 *Created: 2026-01-19*
-*Last updated: 2026-01-19T10:16:42Z*
+*Last updated: 2026-01-19T10:18:34Z*
