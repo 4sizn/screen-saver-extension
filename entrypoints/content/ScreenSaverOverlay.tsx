@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { browser } from 'wxt/browser';
-import { getAllImages } from '@/lib/imageStorage';
 import { displaySettings } from '@/lib/settingsStorage';
 import type { DisplaySettings } from '@/lib/settingsStorage';
+import type { GetRandomImageResponse } from '@/lib/messages';
 
 export default function ScreenSaverOverlay() {
   const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error'>('loading');
@@ -16,42 +16,22 @@ export default function ScreenSaverOverlay() {
   useEffect(() => {
     const loadImageAndSettings = async () => {
       try {
-        console.log('[ScreenSaver] Loading images and settings...');
+        console.log('[ScreenSaver] Requesting image from background script...');
 
-        // Load settings and images in parallel
-        const [loadedSettings, allImages] = await Promise.all([
+        // Load settings and request image from background in parallel
+        const [loadedSettings, imageResponse] = await Promise.all([
           displaySettings.getValue(),
-          getAllImages(),
+          browser.runtime.sendMessage({ type: 'GET_RANDOM_IMAGE' }) as Promise<GetRandomImageResponse>,
         ]);
 
-        console.log('[ScreenSaver] Total images in DB:', allImages.length);
         setSettings(loadedSettings);
+        console.log('[ScreenSaver] Image response:', imageResponse.success ? 'success' : 'failed');
 
-        // PRIORITY SYSTEM: Custom images take precedence over defaults
-        // 1. Try custom enabled images first (user uploads)
-        let enabledImages = allImages.filter(img => !img.isDefault && img.isEnabled);
-        console.log('[ScreenSaver] Enabled custom images:', enabledImages.length);
-
-        // 2. Fallback to enabled default images only if no custom images
-        if (enabledImages.length === 0) {
-          enabledImages = allImages.filter(img => img.isDefault && img.isEnabled);
-          console.log('[ScreenSaver] Using enabled default images fallback:', enabledImages.length);
-        }
-
-        // 3. Last resort: use all default images (even if disabled)
-        if (enabledImages.length === 0) {
-          enabledImages = allImages.filter(img => img.isDefault);
-          console.log('[ScreenSaver] Using all default images (last resort):', enabledImages.length);
-        }
-
-        // Select random image
-        if (enabledImages.length > 0) {
-          const randomImage = enabledImages[Math.floor(Math.random() * enabledImages.length)];
-          console.log('[ScreenSaver] Selected image:', randomImage.name, randomImage.id);
-          const blobUrl = URL.createObjectURL(randomImage.blob);
-          setImageSrc(blobUrl);
+        if (imageResponse.success && imageResponse.dataUrl) {
+          console.log('[ScreenSaver] Received data URL, length:', imageResponse.dataUrl.length);
+          setImageSrc(imageResponse.dataUrl);
         } else {
-          console.error('[ScreenSaver] No images available in database');
+          console.error('[ScreenSaver] Failed to get image:', imageResponse.error);
           setImageState('error');
         }
       } catch (error) {
@@ -62,12 +42,7 @@ export default function ScreenSaverOverlay() {
 
     loadImageAndSettings();
 
-    // Cleanup blob URL on unmount
-    return () => {
-      if (imageSrc) {
-        URL.revokeObjectURL(imageSrc);
-      }
-    };
+    // No cleanup needed for data URLs (they're not object URLs)
   }, []);
 
   // ESC key handler - registered on window for reliable capture

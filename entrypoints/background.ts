@@ -1,14 +1,83 @@
 import { browser } from 'wxt/browser';
-import type { Message } from '@/lib/messages';
+import type { Message, GetRandomImageResponse } from '@/lib/messages';
 import { getActivationState, setActivationState, clearTabState } from '@/lib/storage';
 import { loadDefaultImages } from '@/lib/defaultImages';
+import { getAllImages } from '@/lib/imageStorage';
+
+/**
+ * Select a random image and convert to base64 data URL for content script
+ */
+async function handleGetRandomImage(): Promise<GetRandomImageResponse> {
+  try {
+    console.log('[handleGetRandomImage] Fetching all images from IndexedDB');
+    const allImages = await getAllImages();
+    console.log('[handleGetRandomImage] Total images:', allImages.length);
+
+    // PRIORITY SYSTEM: Custom images take precedence over defaults
+    // 1. Try custom enabled images first (user uploads)
+    let enabledImages = allImages.filter(img => !img.isDefault && img.isEnabled);
+    console.log('[handleGetRandomImage] Enabled custom images:', enabledImages.length);
+
+    // 2. Fallback to enabled default images only if no custom images
+    if (enabledImages.length === 0) {
+      enabledImages = allImages.filter(img => img.isDefault && img.isEnabled);
+      console.log('[handleGetRandomImage] Using enabled default images fallback:', enabledImages.length);
+    }
+
+    // 3. Last resort: use all default images (even if disabled)
+    if (enabledImages.length === 0) {
+      enabledImages = allImages.filter(img => img.isDefault);
+      console.log('[handleGetRandomImage] Using all default images (last resort):', enabledImages.length);
+    }
+
+    // No images available
+    if (enabledImages.length === 0) {
+      console.error('[handleGetRandomImage] No images available in database');
+      return {
+        success: false,
+        error: 'No images available in database',
+      };
+    }
+
+    // Select random image
+    const randomImage = enabledImages[Math.floor(Math.random() * enabledImages.length)];
+    console.log('[handleGetRandomImage] Selected image:', randomImage.name, randomImage.id);
+
+    // Convert Blob to base64 data URL
+    const reader = new FileReader();
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(randomImage.blob);
+    });
+
+    console.log('[handleGetRandomImage] Converted to data URL, length:', dataUrl.length);
+
+    return {
+      success: true,
+      dataUrl,
+    };
+  } catch (error) {
+    console.error('[handleGetRandomImage] Error:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    };
+  }
+}
 
 export default defineBackground({
   type: 'module',
 
   main() {
-    // Message listener for content script requests (e.g., ESC key deactivation)
-    browser.runtime.onMessage.addListener(async (message: Message, sender) => {
+    // Message listener for content script requests
+    browser.runtime.onMessage.addListener((message: Message, sender) => {
+      // Handle GET_RANDOM_IMAGE request from content script
+      if (message.type === 'GET_RANDOM_IMAGE') {
+        return handleGetRandomImage();
+      }
+
+      // Handle DEACTIVATE request
       if (message.type === 'DEACTIVATE' && sender.tab?.id) {
         const tabId = sender.tab.id;
 
@@ -16,18 +85,19 @@ export default defineBackground({
         setActivationState(tabId, false);
 
         // Update badge to gray (inactive)
-        await browser.action.setBadgeBackgroundColor({
+        browser.action.setBadgeBackgroundColor({
           color: '#6B7280',
           tabId: tabId
         });
 
         // Send deactivate message to content script to remove overlay
-        try {
-          await browser.tabs.sendMessage(tabId, { type: 'DEACTIVATE' } as Message);
-        } catch (error) {
+        browser.tabs.sendMessage(tabId, { type: 'DEACTIVATE' } as Message).catch(error => {
           console.log('Could not send deactivate message:', error);
-        }
+        });
       }
+
+      // Return undefined for messages that don't need a response
+      return undefined;
     });
 
     // Icon click handler - registered at top level (not in async function)
