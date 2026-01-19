@@ -12,7 +12,7 @@ This roadmap delivers a cross-browser screen saver extension from foundation to 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Activation** - Extension scaffold with cross-browser support and basic activation
+- [x] **Phase 1: Foundation & Activation** - Extension scaffold with cross-browser support and basic activation
 - [ ] **Phase 2: Content Storage** - Image storage infrastructure and management UI
 - [ ] **Phase 3: Settings Infrastructure** - Settings page with persistence and configuration
 - [ ] **Phase 4: Display & Slideshow** - Full-screen overlay with image rendering
@@ -33,11 +33,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 5 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Project setup & background service worker with activation logic
-- [ ] 01-02-PLAN.md — Content script with Shadow DOM overlay and ESC handler
-- [ ] 01-03-PLAN.md — Extension assets and cross-browser verification
-- [ ] 01-04-PLAN.md — Fix TypeScript type error in audio path (gap closure)
-- [ ] 01-05-PLAN.md — Cross-browser verification testing (gap closure)
+- [x] 01-01-PLAN.md — Project setup & background service worker with activation logic
+- [x] 01-02-PLAN.md — Content script with Shadow DOM overlay and ESC handler
+- [x] 01-03-PLAN.md — Extension assets and cross-browser verification
+- [x] 01-04-PLAN.md — Fix TypeScript type error in audio path (gap closure)
+- [x] 01-05-PLAN.md — Cross-browser verification testing (gap closure)
 
 ### Phase 2: Content Storage
 **Goal**: Users can upload, store, and manage custom images locally
@@ -49,10 +49,14 @@ Plans:
   3. User can view list of all uploaded images with visual indicators
   4. User can delete individual uploaded images
   5. User can reorder images in the collection
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- TBD (will be created during plan-phase)
+- [ ] 02-01-PLAN.md — Storage infrastructure (IndexedDB with idb, image processing utilities)
+- [ ] 02-02-PLAN.md — UI foundation (Shadcn Button and Card components)
+- [ ] 02-03-PLAN.md — Default images bundle and options page scaffold
+- [ ] 02-04-PLAN.md — Image management UI (upload with compression, sortable list with delete)
+- [ ] 02-05-PLAN.md — Integration and verification (background script wiring, manifest updates)
 
 ### Phase 3: Settings Infrastructure
 **Goal**: Users can configure screen saver behavior through persistent settings
@@ -106,8 +110,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Activation | 0/5 | Not started | - |
-| 2. Content Storage | 0/TBD | Not started | - |
+| 1. Foundation & Activation | 5/5 | ✓ Complete | 2026-01-19 |
+| 2. Content Storage | 0/5 | Not started | - |
 | 3. Settings Infrastructure | 0/TBD | Not started | - |
 | 4. Display & Slideshow | 0/TBD | Not started | - |
 | 5. Polish & Integration | 0/TBD | Not started | - |
