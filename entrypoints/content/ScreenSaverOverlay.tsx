@@ -16,32 +16,39 @@ export default function ScreenSaverOverlay() {
   useEffect(() => {
     const loadImageAndSettings = async () => {
       try {
+        console.log('[ScreenSaver] Loading images and settings...');
+
         // Load settings and images in parallel
         const [loadedSettings, allImages] = await Promise.all([
           displaySettings.getValue(),
           getAllImages(),
         ]);
 
+        console.log('[ScreenSaver] Total images in DB:', allImages.length);
         setSettings(loadedSettings);
 
         // Filter to enabled images only
         let enabledImages = allImages.filter(img => img.isEnabled);
+        console.log('[ScreenSaver] Enabled images:', enabledImages.length);
 
         // Fallback to default images if no enabled images
         if (enabledImages.length === 0) {
           enabledImages = allImages.filter(img => img.isDefault);
+          console.log('[ScreenSaver] Using default images fallback:', enabledImages.length);
         }
 
         // Select random image
         if (enabledImages.length > 0) {
           const randomImage = enabledImages[Math.floor(Math.random() * enabledImages.length)];
+          console.log('[ScreenSaver] Selected image:', randomImage.name, randomImage.id);
           const blobUrl = URL.createObjectURL(randomImage.blob);
           setImageSrc(blobUrl);
         } else {
+          console.error('[ScreenSaver] No images available in database');
           setImageState('error');
         }
       } catch (error) {
-        console.error('Failed to load image:', error);
+        console.error('[ScreenSaver] Failed to load image:', error);
         setImageState('error');
       }
     };
