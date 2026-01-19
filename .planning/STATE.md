@@ -12,7 +12,7 @@ See: .planning/PROJECT.md (updated 2026-01-19)
 Phase: 2 of 5 (Content Storage)
 Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-19 - Completed 02-02-PLAN.md
+Last activity: 2026-01-19 - Completed 02-01-PLAN.md
 
 Progress: [██████░░░░] 60% (Phase 2: 2/5 plans complete)
 
@@ -21,18 +21,18 @@ Progress: [██████░░░░] 60% (Phase 2: 2/5 plans complete)
 **Velocity:**
 - Total plans completed: 7
 - Average duration: 8 min
-- Total execution time: 0.92 hours
+- Total execution time: 0.93 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation-&-activation | 5 | 50 min | 10 min |
-| 02-content-storage | 2 | 5 min | 3 min |
+| 02-content-storage | 2 | 11 min | 6 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (3 min), 01-03 (28 min), 01-04 (< 1 min), 01-05 (5 min), 02-02 (3 min)
-- Trend: Phase 2 starting with fast component setup tasks
+- Last 5 plans: 01-03 (28 min), 01-04 (< 1 min), 01-05 (5 min), 02-02 (3 min), 02-01 (6 min)
+- Trend: Phase 2 infrastructure and component setup progressing steadily
 
 *Updated after each plan completion*
 
@@ -77,6 +77,16 @@ Recent decisions affecting current work:
 - Cross-browser verification complete - Extension confirmed working on Chrome, Firefox, Edge
 - All Phase 1 success criteria validated: installation, activation, deactivation, badge state, notifications, audio
 
+**From 02-01 execution:**
+- IndexedDB over chrome.storage for Blob storage - chrome.storage.local doesn't efficiently handle binary data
+- idb library for Promise-based IndexedDB - cleaner async/await patterns than raw IndexedDB API
+- JPEG compression target - universal format with good compression ratio at 0.85 quality
+- 500KB max file size - balance between quality and storage/loading performance
+- 1920x1080 max dimensions - Full HD sufficient for screen saver display
+- Web Worker compression - prevents UI blocking during image processing
+- Order index for sorting - enables drag-and-drop reordering in future UI
+- isDefault flag - protects bundled default images from deletion
+
 **From 02-02 execution:**
 - Use class-variance-authority for component variants - Type-safe variant API with TypeScript autocomplete
 - Use clsx + tailwind-merge combo in cn() utility - Prevents className conflicts (e.g., "p-4 p-8" → "p-8")
@@ -98,10 +108,10 @@ None currently identified.
 ## Session Continuity
 
 Last session: 2026-01-19 (Phase 2 in progress)
-Stopped at: Completed 02-02-PLAN.md
+Stopped at: Completed 02-01-PLAN.md
 Resume file: None
-Next: Continue with 02-03 (Options page UI) or remaining Phase 2 plans
+Next: Continue with remaining Phase 2 plans (02-03, 02-04, 02-05)
 
 ---
 *Created: 2026-01-19*
-*Last updated: 2026-01-19T06:58:29Z*
+*Last updated: 2026-01-19T07:01:44Z*
