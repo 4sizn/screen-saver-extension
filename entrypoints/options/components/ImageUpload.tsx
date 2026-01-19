@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { compressImage, validateImageFile } from '@/lib/imageProcessing';
 import { saveImage } from '@/lib/imageStorage';
 import { Button } from '@/components/ui/button';
@@ -7,6 +7,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 export default function ImageUpload() {
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -63,20 +64,19 @@ export default function ImageUpload() {
       <CardContent>
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
           <input
+            ref={fileInputRef}
             type="file"
-            id="image-upload"
             accept="image/jpeg,image/jpg,image/png,image/webp"
             onChange={handleFileChange}
             disabled={uploading}
             className="hidden"
           />
-          <label htmlFor="image-upload" className="cursor-pointer">
-            <Button disabled={uploading} asChild>
-              <span>
-                {uploading ? 'Compressing...' : 'Choose Image'}
-              </span>
-            </Button>
-          </label>
+          <Button
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+          >
+            {uploading ? 'Compressing...' : 'Choose Image'}
+          </Button>
 
           {preview && (
             <div className="mt-4">

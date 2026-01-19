@@ -101,9 +101,19 @@ export default defineBackground({
           await loadDefaultImages();
 
           // RUNTIME VERIFICATION: Confirm images actually loaded
-          const { openDB } = await import('idb');
-          const db = await openDB('screen-saver-images', 1);
-          const count = await db.count('images');
+          const db = await new Promise<IDBDatabase>((resolve, reject) => {
+            const request = indexedDB.open('screen-saver-images', 1);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+
+          const count = await new Promise<number>((resolve, reject) => {
+            const tx = db.transaction('images', 'readonly');
+            const store = tx.objectStore('images');
+            const request = store.count();
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
 
           if (count === 0) {
             console.error('VERIFICATION FAILED: Default images did not load (count: 0)');

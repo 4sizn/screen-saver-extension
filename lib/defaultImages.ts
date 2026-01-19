@@ -29,7 +29,15 @@ export const DEFAULT_IMAGES = [
  */
 export async function loadDefaultImages(): Promise<void> {
   const db = await initDB();
-  const count = await db.count('images');
+
+  // Count existing images
+  const count = await new Promise<number>((resolve, reject) => {
+    const tx = db.transaction('images', 'readonly');
+    const store = tx.objectStore('images');
+    const request = store.count();
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
 
   // Only load if database is empty (first install)
   if (count > 0) {
