@@ -62,7 +62,7 @@ export default defineBackground({
 
         // Play click sound (optional - handle errors silently)
         try {
-          const audio = new Audio(browser.runtime.getURL('/sounds/click.mp3'));
+          const audio = new Audio(browser.runtime.getURL('/sounds/click.wav'));
           audio.volume = 0.5;
           await audio.play();
         } catch (error) {
