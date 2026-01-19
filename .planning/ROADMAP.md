@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation & Activation** - Extension scaffold with cross-browser support and basic activation
 - [x] **Phase 2: Content Storage** - Image storage infrastructure and management UI
 - [x] **Phase 3: Settings Infrastructure** - Settings page with persistence and configuration
-- [ ] **Phase 4: Display & Slideshow** - Full-screen overlay with image rendering
+- [x] **Phase 4: Display & Slideshow** - Full-screen overlay with image rendering
 - [ ] **Phase 5: Polish & Integration** - Final integration, testing, and distribution readiness
 
 ## Phase Details
@@ -88,8 +88,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md — Image display implementation (loading, rendering, blob URL lifecycle)
-- [ ] 04-02-PLAN.md — Visual verification across fit modes and settings
+- [x] 04-01-PLAN.md — Image display implementation (loading, rendering, blob URL lifecycle)
+- [x] 04-02-PLAN.md — Visual verification across fit modes and settings
 
 ### Phase 5: Polish & Integration
 **Goal**: Extension is polished, tested across browsers, and ready for distribution
@@ -101,10 +101,13 @@ Plans:
   3. Image management (upload, delete, reorder) works reliably
   4. Settings persist correctly and take effect immediately
   5. Extension passes browser-specific validation requirements for distribution
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- TBD (will be created during plan-phase)
+- [ ] 05-01-PLAN.md — Content & Audio Polish (replace placeholder images, remove audio autoplay)
+- [ ] 05-02-PLAN.md — Production Verification (build and verify production mode)
+- [ ] 05-03-PLAN.md — Distribution Preparation (browser-specific ZIPs, privacy policy, store listing)
+- [ ] 05-04-PLAN.md — Final Verification (cross-browser manual testing)
 
 ## Progress
 
@@ -117,7 +120,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 2. Content Storage | 5/5 | ✓ Complete | 2026-01-19 |
 | 3. Settings Infrastructure | 3/3 | ✓ Complete | 2026-01-19 |
 | 4. Display & Slideshow | 2/2 | ✓ Complete | 2026-01-19 |
-| 5. Polish & Integration | 0/TBD | Not started | - |
+| 5. Polish & Integration | 0/4 | Ready for execution | - |
 
 ---
 *Created: 2026-01-19*
