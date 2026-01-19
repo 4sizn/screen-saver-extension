@@ -9,10 +9,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Activation
 
-- [ ] **ACT-01**: User can activate screen saver by clicking extension icon
-- [ ] **ACT-02**: User can deactivate screen saver by clicking extension icon again
-- [ ] **ACT-03**: User can deactivate screen saver by pressing ESC key
-- [ ] **ACT-04**: Extension icon shows visual state (active/inactive badge)
+- [x] **ACT-01**: User can activate screen saver by clicking extension icon
+- [x] **ACT-02**: User can deactivate screen saver by clicking extension icon again
+- [x] **ACT-03**: User can deactivate screen saver by pressing ESC key
+- [x] **ACT-04**: Extension icon shows visual state (active/inactive badge)
 
 ### Display
 
@@ -24,12 +24,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Content
 
-- [ ] **CONT-01**: Extension includes 10-20 default nature landscape images
-- [ ] **CONT-02**: User can upload custom images via file picker
-- [ ] **CONT-03**: Uploaded images are stored locally in browser storage
-- [ ] **CONT-04**: User can view list of all uploaded images
-- [ ] **CONT-05**: User can delete uploaded images
-- [ ] **CONT-06**: User can reorder images in the collection
+- [x] **CONT-01**: Extension includes 10-20 default nature landscape images
+- [x] **CONT-02**: User can upload custom images via file picker
+- [x] **CONT-03**: Uploaded images are stored locally in browser storage
+- [x] **CONT-04**: User can view list of all uploaded images
+- [x] **CONT-05**: User can delete uploaded images
+- [x] **CONT-06**: User can reorder images in the collection
 
 ### Settings
 
@@ -41,11 +41,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Cross-Browser
 
-- [ ] **XBRS-01**: Extension works on Chrome (Manifest V3)
-- [ ] **XBRS-02**: Extension works on Firefox
-- [ ] **XBRS-03**: Extension works on Edge
-- [ ] **XBRS-04**: Extension works on Safari
-- [ ] **XBRS-05**: Core functionality identical across all browsers
+- [x] **XBRS-01**: Extension works on Chrome (Manifest V3)
+- [x] **XBRS-02**: Extension works on Firefox
+- [x] **XBRS-03**: Extension works on Edge
+- [x] **XBRS-04**: Extension works on Safari
+- [x] **XBRS-05**: Core functionality identical across all browsers
 
 ## v2 Requirements
 
@@ -101,31 +101,31 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ACT-01 | Phase 1 | Pending |
-| ACT-02 | Phase 1 | Pending |
-| ACT-03 | Phase 1 | Pending |
-| ACT-04 | Phase 1 | Pending |
+| ACT-01 | Phase 1 | Complete |
+| ACT-02 | Phase 1 | Complete |
+| ACT-03 | Phase 1 | Complete |
+| ACT-04 | Phase 1 | Complete |
 | DISP-01 | Phase 4 | Pending |
 | DISP-02 | Phase 4 | Pending |
 | DISP-03 | Phase 4 | Pending |
 | DISP-04 | Phase 4 | Pending |
 | DISP-05 | Phase 4 | Pending |
-| CONT-01 | Phase 2 | Pending |
-| CONT-02 | Phase 2 | Pending |
-| CONT-03 | Phase 2 | Pending |
-| CONT-04 | Phase 2 | Pending |
-| CONT-05 | Phase 2 | Pending |
-| CONT-06 | Phase 2 | Pending |
+| CONT-01 | Phase 2 | Complete |
+| CONT-02 | Phase 2 | Complete |
+| CONT-03 | Phase 2 | Complete |
+| CONT-04 | Phase 2 | Complete |
+| CONT-05 | Phase 2 | Complete |
+| CONT-06 | Phase 2 | Complete |
 | SET-01 | Phase 3 | Pending |
 | SET-02 | Phase 3 | Pending |
 | SET-03 | Phase 3 | Pending |
 | SET-04 | Phase 3 | Pending |
 | SET-05 | Phase 3 | Pending |
-| XBRS-01 | Phase 1 | Pending |
-| XBRS-02 | Phase 1 | Pending |
-| XBRS-03 | Phase 1 | Pending |
-| XBRS-04 | Phase 1 | Pending |
-| XBRS-05 | Phase 1 | Pending |
+| XBRS-01 | Phase 1 | Complete |
+| XBRS-02 | Phase 1 | Complete |
+| XBRS-03 | Phase 1 | Complete |
+| XBRS-04 | Phase 1 | Complete |
+| XBRS-05 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 25 total
@@ -134,4 +134,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-19*
-*Last updated: 2026-01-19 after roadmap creation*
+*Last updated: 2026-01-19 after Phase 2 completion*
