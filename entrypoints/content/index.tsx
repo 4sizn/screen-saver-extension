@@ -27,7 +27,7 @@ export default defineContentScript({
     });
 
     // Preload audio for better performance and to avoid loading delays
-    const audioUrl = browser.runtime.getURL('sounds/click.wav');
+    const audioUrl = browser.runtime.getURL('/sounds/click.wav');
     console.log('[Screen Saver] Audio URL:', audioUrl);
 
     const audio = new Audio(audioUrl);
