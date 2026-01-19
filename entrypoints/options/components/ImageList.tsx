@@ -16,17 +16,22 @@ import {
   useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { getAllImages, deleteImage, reorderImages } from '@/lib/imageStorage';
+import { getAllImages, deleteImage, reorderImages, toggleImageEnabled } from '@/lib/imageStorage';
 import type { ImageRecord } from '@/lib/imageStorage';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Switch } from '@/components/ui/switch';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 
 function SortableImage({
   item,
   onDelete,
+  onToggle,
 }: {
   item: ImageRecord;
   onDelete: (id: string) => void;
+  onToggle: (id: string) => void;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.id });
@@ -48,7 +53,10 @@ function SortableImage({
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-4 rounded-lg border bg-white p-4 mb-2 shadow-sm"
+      className={cn(
+        "flex items-center gap-4 rounded-lg border bg-white p-4 mb-2 shadow-sm",
+        !item.isEnabled && "opacity-60"
+      )}
     >
       {/* Drag handle */}
       <div
@@ -98,6 +106,21 @@ function SortableImage({
             <span className="text-xs text-blue-600">Bundled image</span>
           </div>
         )}
+      </div>
+
+      {/* Enable/Disable Toggle */}
+      <div className="flex items-center gap-2">
+        <Switch
+          id={`enable-${item.id}`}
+          checked={item.isEnabled}
+          onCheckedChange={() => onToggle(item.id)}
+        />
+        <Label
+          htmlFor={`enable-${item.id}`}
+          className="text-sm cursor-pointer"
+        >
+          {item.isEnabled ? 'Enabled' : 'Disabled'}
+        </Label>
       </div>
 
       {/* Delete button (only for custom images) */}
@@ -166,6 +189,11 @@ export default function ImageList() {
     }
   }
 
+  async function handleToggle(id: string) {
+    await toggleImageEnabled(id);
+    await loadImages();
+  }
+
   return (
     <Card className="mt-8">
       <CardHeader>
@@ -191,6 +219,7 @@ export default function ImageList() {
                   key={item.id}
                   item={item}
                   onDelete={handleDelete}
+                  onToggle={handleToggle}
                 />
               ))}
             </SortableContext>
