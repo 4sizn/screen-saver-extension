@@ -121,7 +121,8 @@ export default defineBackground({
             console.log(`Default images loaded successfully (verified: ${count} images in IndexedDB)`);
           }
         } catch (error) {
-          console.error('Failed to load default images:', error);
+          console.error('Failed to load default images:', error instanceof Error ? error.message : String(error));
+          console.error('Error details:', error);
         }
       }
 
