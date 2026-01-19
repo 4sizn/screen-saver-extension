@@ -5,10 +5,11 @@ export interface ImageRecord {
   uploadedAt: number; // Timestamp
   order: number; // Display order (0-based)
   isDefault: boolean; // True for bundled defaults
+  isEnabled: boolean; // Controls image rotation inclusion
 }
 
 const DB_NAME = 'screen-saver-images';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_NAME = 'images';
 
 // Singleton database promise to avoid multiple connections
@@ -30,13 +31,35 @@ export async function initDB(): Promise<IDBDatabase> {
 
     request.onupgradeneeded = (event) => {
       const db = (event.target as IDBOpenDBRequest).result;
+      const tx = (event.target as IDBOpenDBRequest).transaction!;
 
-      // Create object store with keyPath 'id'
-      const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+      // Version 1: Initial schema
+      if (event.oldVersion < 1) {
+        // Create object store with keyPath 'id'
+        const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
 
-      // Create indexes for sorting and filtering
-      store.createIndex('order', 'order', { unique: false });
-      store.createIndex('isDefault', 'isDefault', { unique: false });
+        // Create indexes for sorting and filtering
+        store.createIndex('order', 'order', { unique: false });
+        store.createIndex('isDefault', 'isDefault', { unique: false });
+      }
+
+      // Version 2: Add isEnabled field to existing images
+      if (event.oldVersion < 2) {
+        const store = tx.objectStore(STORE_NAME);
+
+        // Migrate existing records to have isEnabled: true (default all images to enabled)
+        store.openCursor().onsuccess = (e) => {
+          const cursor = (e.target as IDBRequest<IDBCursorWithValue>).result;
+          if (cursor) {
+            const record = cursor.value;
+            if (record.isEnabled === undefined) {
+              record.isEnabled = true;
+              cursor.update(record);
+            }
+            cursor.continue();
+          }
+        };
+      }
     };
   });
 
@@ -49,12 +72,14 @@ export async function initDB(): Promise<IDBDatabase> {
  * @param blob - Image binary data
  * @param name - Original filename
  * @param isDefault - True for bundled default images
+ * @param isEnabled - True to include in rotation (defaults to enabled)
  */
 export async function saveImage(
   id: string,
   blob: Blob,
   name: string,
-  isDefault = false
+  isDefault = false,
+  isEnabled = true
 ): Promise<void> {
   const db = await initDB();
 
@@ -82,6 +107,7 @@ export async function saveImage(
     uploadedAt: Date.now(),
     order,
     isDefault,
+    isEnabled,
   };
 
   // Save to database
@@ -182,5 +208,30 @@ export async function reorderImages(imageIds: string[]): Promise<void> {
         request.onerror = () => reject(request.error);
       });
     }
+  }
+}
+
+/**
+ * Toggle image enabled state for rotation inclusion
+ * @param id - Image identifier
+ */
+export async function toggleImageEnabled(id: string): Promise<void> {
+  const db = await initDB();
+  const tx = db.transaction(STORE_NAME, 'readwrite');
+  const store = tx.objectStore(STORE_NAME);
+
+  const image = await new Promise<ImageRecord>((resolve, reject) => {
+    const request = store.get(id);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+
+  if (image) {
+    image.isEnabled = !image.isEnabled;
+    await new Promise<void>((resolve, reject) => {
+      const request = store.put(image);
+      request.onsuccess = () => resolve();
+      request.onerror = () => reject(request.error);
+    });
   }
 }
