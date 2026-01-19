@@ -6,6 +6,29 @@ export default defineBackground({
   type: 'module',
 
   main() {
+    // Message listener for content script requests (e.g., ESC key deactivation)
+    browser.runtime.onMessage.addListener(async (message: Message, sender) => {
+      if (message.type === 'DEACTIVATE' && sender.tab?.id) {
+        const tabId = sender.tab.id;
+
+        // Deactivate - silent (no notification, no sound)
+        setActivationState(tabId, false);
+
+        // Update badge to gray (inactive)
+        await browser.action.setBadgeBackgroundColor({
+          color: '#6B7280',
+          tabId: tabId
+        });
+
+        // Send deactivate message to content script to remove overlay
+        try {
+          await browser.tabs.sendMessage(tabId, { type: 'DEACTIVATE' } as Message);
+        } catch (error) {
+          console.log('Could not send deactivate message:', error);
+        }
+      }
+    });
+
     // Icon click handler - registered at top level (not in async function)
     browser.action.onClicked.addListener(async (tab) => {
       if (!tab.id) return;
@@ -60,15 +83,7 @@ export default defineBackground({
           message: 'ESC 키를 눌러 종료하세요.',
         });
 
-        // Play click sound (optional - handle errors silently)
-        try {
-          const audio = new Audio(browser.runtime.getURL('/sounds/click.wav'));
-          audio.volume = 0.5;
-          await audio.play();
-        } catch (error) {
-          // Audio playback is optional enhancement - fail silently
-          console.log('Could not play sound:', error);
-        }
+        // Note: Sound is played by content script (Audio API doesn't work in service workers)
       }
     });
 
