@@ -9,7 +9,7 @@ export async function compressImage(file: File): Promise<Blob> {
   const options = {
     maxSizeMB: 0.5, // 500KB target
     maxWidthOrHeight: 1920, // Full HD resolution
-    useWebWorker: true, // Non-blocking compression
+    useWebWorker: false, // Disabled to avoid CSP violations in extension context
     fileType: 'image/jpeg' as const, // Universal format
     initialQuality: 0.85, // Good quality balance
   };
