@@ -26,44 +26,17 @@ export default defineContentScript({
       },
     });
 
-    // Preload audio for better performance and to avoid loading delays
-    const audioUrl = browser.runtime.getURL('/sounds/click.wav');
-    console.log('[Screen Saver] Audio URL:', audioUrl);
-
-    const audio = new Audio(audioUrl);
-    audio.volume = 0.5;
-    audio.preload = 'auto';
-
-    // Preload the audio file
-    audio.load();
-
-    audio.addEventListener('error', (e) => {
-      console.error('[Screen Saver] Audio load error:', e);
-      console.error('[Screen Saver] Audio error code:', audio.error?.code);
-      console.error('[Screen Saver] Audio error message:', audio.error?.message);
-    });
-
-    audio.addEventListener('canplaythrough', () => {
-      console.log('[Screen Saver] Audio loaded successfully');
-    });
+    // Note: Audio removed due to browser autoplay policy violations.
+    // Browser autoplay policies block audio playback without user interaction,
+    // and extension icon click is not sufficient interaction for content script context.
+    // Visual overlay + notification provide sufficient activation feedback.
 
     // Listen for messages from background script
     browser.runtime.onMessage.addListener((message: Message) => {
       if (message.type === 'ACTIVATE') {
+        // Mount visual overlay (primary activation feedback)
         ui.mount();
-
-        // Play activation sound (works in content script, not in service worker)
-        console.log('[Screen Saver] Attempting to play sound...');
-        audio.currentTime = 0; // Reset to start
-        audio.play()
-          .then(() => {
-            console.log('[Screen Saver] Sound played successfully');
-          })
-          .catch(err => {
-            console.error('[Screen Saver] Could not play sound:', err);
-            console.error('[Screen Saver] Error name:', err.name);
-            console.error('[Screen Saver] Error message:', err.message);
-          });
+        // Notification feedback is handled by background script
       } else if (message.type === 'DEACTIVATE') {
         ui.remove();
       }
