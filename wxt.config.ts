@@ -8,7 +8,8 @@ export default defineConfig({
     permissions: [
       'storage',
       'notifications',
-      'activeTab'
+      'activeTab',
+      'unlimitedStorage',  // Prevents IndexedDB quota eviction
     ],
     action: {
       default_icon: {
@@ -23,6 +24,10 @@ export default defineConfig({
     web_accessible_resources: [
       {
         resources: ['sounds/*.wav'],
+        matches: ['<all_urls>'],
+      },
+      {
+        resources: ['images/defaults/*.jpg'],  // Default images for IndexedDB loading
         matches: ['<all_urls>'],
       },
     ],
