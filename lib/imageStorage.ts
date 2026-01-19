@@ -1,5 +1,3 @@
-import { openDB, DBSchema, IDBPDatabase } from 'idb';
-
 export interface ImageRecord {
   id: string; // UUID
   blob: Blob; // Image binary data
@@ -9,39 +7,37 @@ export interface ImageRecord {
   isDefault: boolean; // True for bundled defaults
 }
 
-// IndexedDB schema definition
-interface ScreenSaverDB extends DBSchema {
-  images: {
-    key: string;
-    value: ImageRecord;
-    indexes: { order: number; isDefault: number };
-  };
-}
-
 const DB_NAME = 'screen-saver-images';
 const DB_VERSION = 1;
 const STORE_NAME = 'images';
 
 // Singleton database promise to avoid multiple connections
-let dbPromise: Promise<IDBPDatabase<ScreenSaverDB>> | null = null;
+let dbPromise: Promise<IDBDatabase> | null = null;
 
 /**
- * Initialize and open the IndexedDB database
+ * Initialize and open the IndexedDB database using native API
  */
-export async function initDB(): Promise<IDBPDatabase<ScreenSaverDB>> {
+export async function initDB(): Promise<IDBDatabase> {
   if (dbPromise) {
     return dbPromise;
   }
 
-  dbPromise = openDB<ScreenSaverDB>(DB_NAME, DB_VERSION, {
-    upgrade(db) {
+  dbPromise = new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => resolve(request.result);
+
+    request.onupgradeneeded = (event) => {
+      const db = (event.target as IDBOpenDBRequest).result;
+
       // Create object store with keyPath 'id'
       const store = db.createObjectStore(STORE_NAME, { keyPath: 'id' });
 
       // Create indexes for sorting and filtering
       store.createIndex('order', 'order', { unique: false });
       store.createIndex('isDefault', 'isDefault', { unique: false });
-    },
+    };
   });
 
   return dbPromise;
@@ -65,8 +61,12 @@ export async function saveImage(
   // Get current max order value
   const tx = db.transaction(STORE_NAME, 'readonly');
   const store = tx.objectStore(STORE_NAME);
-  const allImages = await store.getAll();
-  await tx.done;
+
+  const allImages = await new Promise<ImageRecord[]>((resolve, reject) => {
+    const request = store.getAll();
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
 
   // Auto-assign order as next available position
   const maxOrder = allImages.length > 0
@@ -85,7 +85,14 @@ export async function saveImage(
   };
 
   // Save to database
-  await db.put(STORE_NAME, imageRecord);
+  const writeTx = db.transaction(STORE_NAME, 'readwrite');
+  const writeStore = writeTx.objectStore(STORE_NAME);
+
+  await new Promise<void>((resolve, reject) => {
+    const request = writeStore.put(imageRecord);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
 }
 
 /**
@@ -94,7 +101,14 @@ export async function saveImage(
  */
 export async function getImage(id: string): Promise<ImageRecord | undefined> {
   const db = await initDB();
-  return db.get(STORE_NAME, id);
+  const tx = db.transaction(STORE_NAME, 'readonly');
+  const store = tx.objectStore(STORE_NAME);
+
+  return new Promise((resolve, reject) => {
+    const request = store.get(id);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
 }
 
 /**
@@ -105,9 +119,12 @@ export async function getAllImages(): Promise<ImageRecord[]> {
   const tx = db.transaction(STORE_NAME, 'readonly');
   const store = tx.objectStore(STORE_NAME);
   const index = store.index('order');
-  const images = await index.getAll();
-  await tx.done;
-  return images;
+
+  return new Promise((resolve, reject) => {
+    const request = index.getAll();
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
 }
 
 /**
@@ -117,14 +134,25 @@ export async function getAllImages(): Promise<ImageRecord[]> {
  */
 export async function deleteImage(id: string): Promise<void> {
   const db = await initDB();
+  const tx = db.transaction(STORE_NAME, 'readwrite');
+  const store = tx.objectStore(STORE_NAME);
 
   // Check if image is a default
-  const image = await db.get(STORE_NAME, id);
+  const image = await new Promise<ImageRecord | undefined>((resolve, reject) => {
+    const request = store.get(id);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+
   if (image?.isDefault) {
     throw new Error('Cannot delete default images');
   }
 
-  await db.delete(STORE_NAME, id);
+  await new Promise<void>((resolve, reject) => {
+    const request = store.delete(id);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
 }
 
 /**
@@ -133,26 +161,26 @@ export async function deleteImage(id: string): Promise<void> {
  */
 export async function reorderImages(imageIds: string[]): Promise<void> {
   const db = await initDB();
-
-  // Use a transaction to ensure all updates complete atomically
   const tx = db.transaction(STORE_NAME, 'readwrite');
   const store = tx.objectStore(STORE_NAME);
 
   // Update order field for each image
   for (let i = 0; i < imageIds.length; i++) {
     const id = imageIds[i];
-    const image = await store.get(id);
+
+    const image = await new Promise<ImageRecord | undefined>((resolve, reject) => {
+      const request = store.get(id);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
 
     if (image) {
       image.order = i;
-      await store.put(image);
+      await new Promise<void>((resolve, reject) => {
+        const request = store.put(image);
+        request.onsuccess = () => resolve();
+        request.onerror = () => reject(request.error);
+      });
     }
   }
-
-  await tx.done;
 }
-
-// Initialize database on module load
-initDB().catch(err => {
-  console.error('Failed to initialize IndexedDB:', err);
-});
