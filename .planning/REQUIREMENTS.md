@@ -16,11 +16,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Display
 
-- [ ] **DISP-01**: Screen saver displays as full-screen overlay in current tab
-- [ ] **DISP-02**: Screen saver shows one random image from available collection
-- [ ] **DISP-03**: Image remains static until user deactivates (no automatic slideshow)
-- [ ] **DISP-04**: Image displays with proper fit options (cover/contain)
-- [ ] **DISP-05**: Background color is configurable for images that don't fill screen
+- [x] **DISP-01**: Screen saver displays as full-screen overlay in current tab
+- [x] **DISP-02**: Screen saver shows one random image from available collection
+- [x] **DISP-03**: Image remains static until user deactivates (no automatic slideshow)
+- [x] **DISP-04**: Image displays with proper fit options (cover/contain)
+- [x] **DISP-05**: Background color is configurable for images that don't fill screen
 
 ### Content
 
@@ -105,11 +105,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ACT-02 | Phase 1 | Complete |
 | ACT-03 | Phase 1 | Complete |
 | ACT-04 | Phase 1 | Complete |
-| DISP-01 | Phase 4 | Pending |
-| DISP-02 | Phase 4 | Pending |
-| DISP-03 | Phase 4 | Pending |
-| DISP-04 | Phase 4 | Pending |
-| DISP-05 | Phase 4 | Pending |
+| DISP-01 | Phase 4 | Complete |
+| DISP-02 | Phase 4 | Complete |
+| DISP-03 | Phase 4 | Complete |
+| DISP-04 | Phase 4 | Complete |
+| DISP-05 | Phase 4 | Complete |
 | CONT-01 | Phase 2 | Complete |
 | CONT-02 | Phase 2 | Complete |
 | CONT-03 | Phase 2 | Complete |
@@ -134,4 +134,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-01-19*
-*Last updated: 2026-01-19 after Phase 2 completion*
+*Last updated: 2026-01-19 after Phase 4 completion*
