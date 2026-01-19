@@ -22,6 +22,7 @@
     "wxt": "^0.20.13"
   },
   "dependencies": {
+    "browser-image-compression": "^2.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "idb": "^8.0.3",
