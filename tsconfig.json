@@ -13,8 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["@wxt-dev/module-react/client"]
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "include": ["entrypoints", "lib", "components"],
+  "include": ["entrypoints", "lib", "components", ".wxt/types/**/*.d.ts"],
   "exclude": ["node_modules", ".output"]
 }
