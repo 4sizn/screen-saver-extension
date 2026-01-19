@@ -33,11 +33,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Settings
 
-- [ ] **SET-01**: User can access settings page from extension popup or options
-- [ ] **SET-02**: User can enable/disable specific images from rotation
-- [ ] **SET-03**: User can configure image display fit (cover/contain)
-- [ ] **SET-04**: User can configure background color for images
-- [ ] **SET-05**: Settings persist across browser sessions
+- [x] **SET-01**: User can access settings page from extension popup or options
+- [x] **SET-02**: User can enable/disable specific images from rotation
+- [x] **SET-03**: User can configure image display fit (cover/contain)
+- [x] **SET-04**: User can configure background color for images
+- [x] **SET-05**: Settings persist across browser sessions
 
 ### Cross-Browser
 
@@ -116,11 +116,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CONT-04 | Phase 2 | Complete |
 | CONT-05 | Phase 2 | Complete |
 | CONT-06 | Phase 2 | Complete |
-| SET-01 | Phase 3 | Pending |
-| SET-02 | Phase 3 | Pending |
-| SET-03 | Phase 3 | Pending |
-| SET-04 | Phase 3 | Pending |
-| SET-05 | Phase 3 | Pending |
+| SET-01 | Phase 3 | Complete |
+| SET-02 | Phase 3 | Complete |
+| SET-03 | Phase 3 | Complete |
+| SET-04 | Phase 3 | Complete |
+| SET-05 | Phase 3 | Complete |
 | XBRS-01 | Phase 1 | Complete |
 | XBRS-02 | Phase 1 | Complete |
 | XBRS-03 | Phase 1 | Complete |
