@@ -116,7 +116,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 | 1. Foundation & Activation | 5/5 | ✓ Complete | 2026-01-19 |
 | 2. Content Storage | 5/5 | ✓ Complete | 2026-01-19 |
 | 3. Settings Infrastructure | 3/3 | ✓ Complete | 2026-01-19 |
-| 4. Display & Slideshow | 0/2 | Not started | - |
+| 4. Display & Slideshow | 2/2 | ✓ Complete | 2026-01-19 |
 | 5. Polish & Integration | 0/TBD | Not started | - |
 
 ---
