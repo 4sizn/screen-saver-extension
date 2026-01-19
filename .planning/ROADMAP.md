@@ -13,7 +13,7 @@ This roadmap delivers a cross-browser screen saver extension from foundation to 
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation & Activation** - Extension scaffold with cross-browser support and basic activation
-- [ ] **Phase 2: Content Storage** - Image storage infrastructure and management UI
+- [x] **Phase 2: Content Storage** - Image storage infrastructure and management UI
 - [ ] **Phase 3: Settings Infrastructure** - Settings page with persistence and configuration
 - [ ] **Phase 4: Display & Slideshow** - Full-screen overlay with image rendering
 - [ ] **Phase 5: Polish & Integration** - Final integration, testing, and distribution readiness
@@ -52,11 +52,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Storage infrastructure (IndexedDB with idb, image processing utilities)
-- [ ] 02-02-PLAN.md — UI foundation (Shadcn Button and Card components)
-- [ ] 02-03-PLAN.md — Default images bundle and options page scaffold
-- [ ] 02-04-PLAN.md — Image management UI (upload with compression, sortable list with delete)
-- [ ] 02-05-PLAN.md — Integration and verification (background script wiring, manifest updates)
+- [x] 02-01-PLAN.md — Storage infrastructure (IndexedDB with idb, image processing utilities)
+- [x] 02-02-PLAN.md — UI foundation (Shadcn Button and Card components)
+- [x] 02-03-PLAN.md — Default images bundle and options page scaffold
+- [x] 02-04-PLAN.md — Image management UI (upload with compression, sortable list with delete)
+- [x] 02-05-PLAN.md — Integration and verification (background script wiring, manifest updates)
 
 ### Phase 3: Settings Infrastructure
 **Goal**: Users can configure screen saver behavior through persistent settings
@@ -68,10 +68,12 @@ Plans:
   3. User can configure how images fit the screen (cover/contain)
   4. User can configure background color for images that don't fill screen
   5. Settings persist across browser sessions and extension updates
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- TBD (will be created during plan-phase)
+- [ ] 03-01-PLAN.md — Settings storage foundation (IndexedDB v2 migration, WXT displaySettings)
+- [ ] 03-02-PLAN.md — Display settings UI (fit selector and color picker)
+- [ ] 03-03-PLAN.md — Image enable/disable toggles (Switch controls in ImageList)
 
 ### Phase 4: Display & Slideshow
 **Goal**: Screen saver displays images in full-screen overlay with proper rendering
@@ -112,7 +114,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 |-------|----------------|--------|-----------|
 | 1. Foundation & Activation | 5/5 | ✓ Complete | 2026-01-19 |
 | 2. Content Storage | 5/5 | ✓ Complete | 2026-01-19 |
-| 3. Settings Infrastructure | 0/TBD | Not started | - |
+| 3. Settings Infrastructure | 0/3 | Not started | - |
 | 4. Display & Slideshow | 0/TBD | Not started | - |
 | 5. Polish & Integration | 0/TBD | Not started | - |
 
