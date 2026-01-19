@@ -1,9 +1,63 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { browser } from 'wxt/browser';
+import { getAllImages } from '@/lib/imageStorage';
+import { displaySettings } from '@/lib/settingsStorage';
+import type { DisplaySettings } from '@/lib/settingsStorage';
 
 export default function ScreenSaverOverlay() {
+  const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error'>('loading');
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [settings, setSettings] = useState<DisplaySettings>({
+    imageFit: 'cover',
+    backgroundColor: '#000000',
+  });
+
+  // Load image and settings on mount
   useEffect(() => {
-    // ESC key handler - registered on window for reliable capture
+    const loadImageAndSettings = async () => {
+      try {
+        // Load settings and images in parallel
+        const [loadedSettings, allImages] = await Promise.all([
+          displaySettings.getValue(),
+          getAllImages(),
+        ]);
+
+        setSettings(loadedSettings);
+
+        // Filter to enabled images only
+        let enabledImages = allImages.filter(img => img.isEnabled);
+
+        // Fallback to default images if no enabled images
+        if (enabledImages.length === 0) {
+          enabledImages = allImages.filter(img => img.isDefault);
+        }
+
+        // Select random image
+        if (enabledImages.length > 0) {
+          const randomImage = enabledImages[Math.floor(Math.random() * enabledImages.length)];
+          const blobUrl = URL.createObjectURL(randomImage.blob);
+          setImageSrc(blobUrl);
+        } else {
+          setImageState('error');
+        }
+      } catch (error) {
+        console.error('Failed to load image:', error);
+        setImageState('error');
+      }
+    };
+
+    loadImageAndSettings();
+
+    // Cleanup blob URL on unmount
+    return () => {
+      if (imageSrc) {
+        URL.revokeObjectURL(imageSrc);
+      }
+    };
+  }, []);
+
+  // ESC key handler - registered on window for reliable capture
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         // Notify background to deactivate
