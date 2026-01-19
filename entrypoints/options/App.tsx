@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
+import DisplaySettings from './components/DisplaySettings';
 import ImageUpload from './components/ImageUpload';
 import ImageList from './components/ImageList';
 
@@ -16,6 +17,7 @@ function OptionsApp() {
         </header>
 
         <main>
+          <DisplaySettings />
           <ImageUpload />
           <ImageList />
         </main>
