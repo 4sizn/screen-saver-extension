@@ -83,6 +83,7 @@ export default function ScreenSaverOverlay() {
         <img
           src={imageSrc}
           alt="Screen saver"
+          draggable="false"
           className={`screen-saver-image transition-opacity duration-300 ${
             imageState === 'loaded' ? 'opacity-100' : 'opacity-0'
           }`}
