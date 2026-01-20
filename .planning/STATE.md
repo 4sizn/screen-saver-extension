@@ -177,7 +177,8 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None currently identified.
+1 todo pending:
+- Add missing default image nature-16 to DEFAULT_IMAGES array (general)
 
 ### Blockers/Concerns
 
