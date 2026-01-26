@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "WebSearch",
+      "WebFetch(domain:wxt.dev)",
+      "WebFetch(domain:opus1269.github.io)",
+      "WebFetch(domain:developer.chrome.com)",
+      "WebFetch(domain:github.com)",
+      "Bash(git init:*)",
+      "Bash(ls:*)",
+      "Bash(npm create:*)",
+      "Bash(npm search:*)",
+      "Bash(npx wxt@latest init:*)",
+      "Bash(npm install:*)",
+      "Bash(sips:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run build:*)",
+      "Bash(node:*)",
+      "Bash(du:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(test:*)",
+      "Skill(gsd:execute-phase)",
+      "Bash(chmod:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(stat:*)",
+      "Skill(gsd:discuss-phase)",
+      "Bash(pkill:*)",
+      "Bash(git status:*)",
+      "Bash(npm run zip:*)",
+      "Bash(wxt zip:*)",
+      "Bash(unzip:*)",
+      "Bash(wc:*)",
+      "Skill(gsd:new-milestone)",
+      "Bash(find:*)",
+      "Bash(git push)",
+      "Bash(tree:*)"
+    ]
+  }
+}

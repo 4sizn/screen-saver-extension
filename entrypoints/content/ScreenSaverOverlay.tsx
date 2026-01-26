@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { browser } from 'wxt/browser';
-import { displaySettings } from '@/lib/settingsStorage';
-import type { DisplaySettings } from '@/lib/settingsStorage';
+import { displaySettings, clockSettings } from '@/lib/settingsStorage';
+import type { DisplaySettings, ClockSettings } from '@/lib/settingsStorage';
 import type { GetRandomImageResponse } from '@/lib/messages';
+import DigitalClock from './components/DigitalClock';
 
 export default function ScreenSaverOverlay() {
   const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error'>('loading');
@@ -10,6 +11,10 @@ export default function ScreenSaverOverlay() {
   const [settings, setSettings] = useState<DisplaySettings>({
     imageFit: 'cover',
     backgroundColor: '#000000',
+  });
+  const [clock, setClock] = useState<ClockSettings>({
+    enabled: false,
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   });
 
   // Load image and settings on mount
@@ -19,12 +24,14 @@ export default function ScreenSaverOverlay() {
         console.log('[ScreenSaver] Requesting image from background script...');
 
         // Load settings and request image from background in parallel
-        const [loadedSettings, imageResponse] = await Promise.all([
+        const [loadedSettings, loadedClock, imageResponse] = await Promise.all([
           displaySettings.getValue(),
+          clockSettings.getValue(),
           browser.runtime.sendMessage({ type: 'GET_RANDOM_IMAGE' }) as Promise<GetRandomImageResponse>,
         ]);
 
         setSettings(loadedSettings);
+        setClock(loadedClock);
         console.log('[ScreenSaver] Image response:', imageResponse.success ? 'success' : 'failed');
 
         if (imageResponse.success && imageResponse.dataUrl) {
@@ -92,6 +99,9 @@ export default function ScreenSaverOverlay() {
           onError={() => setImageState('error')}
         />
       )}
+
+      {/* Digital Clock */}
+      {clock.enabled && <DigitalClock timezone={clock.timezone} />}
     </div>
   );
 }
