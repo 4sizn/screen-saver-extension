@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './style.css';
 import DisplaySettings from './components/DisplaySettings';
+import ClockSettings from './components/ClockSettings';
 import ImageUpload from './components/ImageUpload';
 import ImageList from './components/ImageList';
 
@@ -18,6 +19,7 @@ function OptionsApp() {
 
         <main>
           <DisplaySettings />
+          <ClockSettings />
           <ImageUpload />
           <ImageList />
         </main>

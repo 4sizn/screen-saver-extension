@@ -31,3 +31,31 @@
   height: 100%;
   object-position: center;
 }
+
+.digital-clock {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2147483648;
+
+  font-size: 6rem;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  color: white;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5),
+               0 2px 4px rgba(0, 0, 0, 0.3);
+
+  letter-spacing: 0.05em;
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .digital-clock { font-size: 4rem; }
+}
+
+@media (max-width: 480px) {
+  .digital-clock { font-size: 3rem; }
+}

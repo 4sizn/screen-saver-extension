@@ -21,3 +21,25 @@ export const displaySettings = storage.defineItem<DisplaySettings>(
     },
   }
 );
+
+/**
+ * Clock settings for digital clock display
+ */
+export interface ClockSettings {
+  enabled: boolean;
+  timezone: string;
+}
+
+/**
+ * Persistent clock settings stored in chrome.storage.sync
+ * Automatically syncs across devices and browser sessions
+ */
+export const clockSettings = storage.defineItem<ClockSettings>(
+  'sync:clockSettings',
+  {
+    fallback: {
+      enabled: false,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+    },
+  }
+);
