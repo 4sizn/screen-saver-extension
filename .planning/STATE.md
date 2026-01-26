@@ -177,8 +177,9 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-1 todo pending:
+2 todos pending:
 - Add missing default image nature-16 to DEFAULT_IMAGES array (general)
+- Add digital clock display option to screen saver (ui)
 
 ### Blockers/Concerns
 
