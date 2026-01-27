@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "Bildschirmschoner",
+    "description": "Name der Erweiterung"
+  },
+  "extDescription": {
+    "message": "Anpassbarer Bildschirmschoner für Ihren Webbrowser",
+    "description": "Beschreibung der Erweiterung"
+  },
+  "actionTitle": {
+    "message": "Bildschirmschoner umschalten",
+    "description": "Tooltip für Erweiterungssymbol"
+  },
+  "notificationRestrictedTitle": {
+    "message": "Bildschirmschoner nicht verfügbar",
+    "description": "Titel der Benachrichtigung für eingeschränkte Seiten"
+  },
+  "notificationRestrictedMessage": {
+    "message": "Der Bildschirmschoner kann aus Sicherheitsgründen nicht auf Browser-internen Seiten (chrome://, edge:// usw.) verwendet werden.",
+    "description": "Nachricht der Benachrichtigung für eingeschränkte Seiten"
+  },
+  "notificationActivatedTitle": {
+    "message": "Bildschirmschoner aktiviert",
+    "description": "Titel der Aktivierungsbenachrichtigung"
+  },
+  "notificationActivatedMessage": {
+    "message": "Drücken Sie ESC zum Beenden.",
+    "description": "Nachricht der Aktivierungsbenachrichtigung"
+  },
+  "iconTitleRestricted": {
+    "message": "Bildschirmschoner nicht verfügbar (Browser-interne Seite)",
+    "description": "Tooltip für eingeschränkte Seiten"
+  },
+  "iconTitleNormal": {
+    "message": "Bildschirmschoner umschalten",
+    "description": "Tooltip für normale Seiten"
+  },
+  "loadingText": {
+    "message": "Wird geladen...",
+    "description": "Text beim Laden des Bildes"
+  },
+  "errorTitle": {
+    "message": "Bild kann nicht geladen werden",
+    "description": "Titel des Bildladefehlers"
+  },
+  "errorMessage": {
+    "message": "Überprüfen Sie die Einstellungen, um Bilder zu aktivieren",
+    "description": "Nachricht des Bildladefehlers"
+  }
+}

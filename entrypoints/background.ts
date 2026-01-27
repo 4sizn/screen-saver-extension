@@ -60,7 +60,7 @@ async function updateIconState(tabId: number, url?: string) {
       tabId
     });
     await browser.action.setTitle({
-      title: '스크린세이버 사용 불가 (브라우저 내부 페이지)',
+      title: browser.i18n.getMessage('iconTitleRestricted'),
       tabId
     });
   } else {
@@ -84,7 +84,7 @@ async function updateIconState(tabId: number, url?: string) {
       tabId
     });
     await browser.action.setTitle({
-      title: 'Toggle Screen Saver',
+      title: browser.i18n.getMessage('iconTitleNormal'),
       tabId
     });
   }
@@ -203,8 +203,8 @@ export default defineBackground({
         await browser.notifications.create({
           type: 'basic',
           iconUrl: browser.runtime.getURL('/icon/48.png'),
-          title: '스크린세이버 사용 불가',
-          message: '브라우저 내부 페이지(chrome://, edge:// 등)에서는 보안상의 이유로 스크린세이버를 사용할 수 없습니다.',
+          title: browser.i18n.getMessage('notificationRestrictedTitle'),
+          message: browser.i18n.getMessage('notificationRestrictedMessage'),
         });
         return;
       }
@@ -251,12 +251,12 @@ export default defineBackground({
           console.log('Could not send activate message:', error);
         }
 
-        // Show notification (Korean text per requirements)
+        // Show notification
         await browser.notifications.create({
           type: 'basic',
           iconUrl: browser.runtime.getURL('/icon/48.png'),
-          title: '스크린세이버 활성화',
-          message: 'ESC 키를 눌러 종료하세요.',
+          title: browser.i18n.getMessage('notificationActivatedTitle'),
+          message: browser.i18n.getMessage('notificationActivatedMessage'),
         });
 
         // Note: Sound is played by content script (Audio API doesn't work in service workers)

@@ -75,14 +75,14 @@ export default function ScreenSaverOverlay() {
     >
       {imageState === 'loading' && (
         <div className="flex items-center justify-center">
-          <p className="text-white text-xl">Loading...</p>
+          <p className="text-white text-xl">{browser.i18n.getMessage('loadingText')}</p>
         </div>
       )}
 
       {imageState === 'error' && (
         <div className="flex flex-col items-center justify-center">
-          <p className="text-white text-xl">Unable to load image</p>
-          <p className="text-white/70 text-sm mt-2">Check settings to enable images</p>
+          <p className="text-white text-xl">{browser.i18n.getMessage('errorTitle')}</p>
+          <p className="text-white/70 text-sm mt-2">{browser.i18n.getMessage('errorMessage')}</p>
         </div>
       )}
 
