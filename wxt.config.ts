@@ -9,6 +9,7 @@ export default defineConfig({
       'storage',
       'notifications',
       'activeTab',
+      'tabs',  // Required to read tab URLs for restricted page detection
       'unlimitedStorage',  // Prevents IndexedDB quota eviction
     ],
     action: {
