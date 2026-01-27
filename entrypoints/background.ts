@@ -5,6 +5,92 @@ import { loadDefaultImages } from '@/lib/defaultImages';
 import { getAllImages } from '@/lib/imageStorage';
 
 /**
+ * Check if URL is a restricted page where content scripts cannot run
+ */
+function isRestrictedUrl(url?: string): boolean {
+  if (!url) return true;
+
+  const restrictedProtocols = [
+    'chrome://',
+    'chrome-extension://',
+    'edge://',
+    'about:',
+    'view-source:',
+  ];
+
+  const restrictedDomains = [
+    'chrome.google.com/webstore',
+    'microsoftedge.microsoft.com/addons',
+  ];
+
+  // Check protocols
+  if (restrictedProtocols.some(protocol => url.startsWith(protocol))) {
+    return true;
+  }
+
+  // Check domains
+  if (restrictedDomains.some(domain => url.includes(domain))) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Update icon state based on URL restrictions
+ */
+async function updateIconState(tabId: number, url?: string) {
+  if (isRestrictedUrl(url)) {
+    // Disable icon for restricted pages
+    await browser.action.setIcon({
+      tabId,
+      path: {
+        '16': 'icon/16.png',
+        '32': 'icon/32.png',
+        '48': 'icon/48.png',
+        '128': 'icon/128.png',
+      }
+    });
+    await browser.action.setBadgeBackgroundColor({
+      color: '#9CA3AF',
+      tabId
+    });
+    await browser.action.setBadgeText({
+      text: '✕',
+      tabId
+    });
+    await browser.action.setTitle({
+      title: '스크린세이버 사용 불가 (브라우저 내부 페이지)',
+      tabId
+    });
+  } else {
+    // Enable icon for normal pages
+    const isActive = getActivationState(tabId);
+    await browser.action.setIcon({
+      tabId,
+      path: {
+        '16': 'icon/16.png',
+        '32': 'icon/32.png',
+        '48': 'icon/48.png',
+        '128': 'icon/128.png',
+      }
+    });
+    await browser.action.setBadgeBackgroundColor({
+      color: isActive ? '#22C55E' : '#6B7280',
+      tabId
+    });
+    await browser.action.setBadgeText({
+      text: ' ',
+      tabId
+    });
+    await browser.action.setTitle({
+      title: 'Toggle Screen Saver',
+      tabId
+    });
+  }
+}
+
+/**
  * Select a random image and convert to base64 data URL for content script
  */
 async function handleGetRandomImage(): Promise<GetRandomImageResponse> {
@@ -112,6 +198,17 @@ export default defineBackground({
     browser.action.onClicked.addListener(async (tab) => {
       if (!tab.id) return;
 
+      // Check if current page is restricted
+      if (isRestrictedUrl(tab.url)) {
+        await browser.notifications.create({
+          type: 'basic',
+          iconUrl: browser.runtime.getURL('/icon/48.png'),
+          title: '스크린세이버 사용 불가',
+          message: '브라우저 내부 페이지(chrome://, edge:// 등)에서는 보안상의 이유로 스크린세이버를 사용할 수 없습니다.',
+        });
+        return;
+      }
+
       const isActive = getActivationState(tab.id);
 
       if (isActive) {
@@ -171,6 +268,48 @@ export default defineBackground({
       clearTabState(tabId);
     });
 
+    // Track the previously active tab to handle screen saver state
+    let previousActiveTabId: number | null = null;
+
+    // Update icon state when tab is activated
+    browser.tabs.onActivated.addListener(async (activeInfo) => {
+      // Deactivate screen saver on previous tab when switching tabs
+      if (previousActiveTabId !== null && previousActiveTabId !== activeInfo.tabId) {
+        const wasActive = getActivationState(previousActiveTabId);
+        if (wasActive) {
+          setActivationState(previousActiveTabId, false);
+
+          // Update previous tab's badge to gray
+          browser.action.setBadgeBackgroundColor({
+            color: '#6B7280',
+            tabId: previousActiveTabId
+          }).catch(() => {
+            // Tab might have been closed, ignore error
+          });
+
+          // Send deactivate message to previous tab
+          browser.tabs.sendMessage(previousActiveTabId, { type: 'DEACTIVATE' } as Message).catch(() => {
+            // Could not send message, tab might be closed
+          });
+        }
+      }
+
+      // Update current tab's icon state
+      const tab = await browser.tabs.get(activeInfo.tabId);
+      await updateIconState(activeInfo.tabId, tab.url);
+
+      // Remember this tab as the currently active one
+      previousActiveTabId = activeInfo.tabId;
+    });
+
+    // Update icon state when tab URL changes or page loads
+    browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+      // Update on URL change or when page finishes loading (to handle reloads)
+      if (changeInfo.url || changeInfo.status === 'complete') {
+        await updateIconState(tabId, tab.url);
+      }
+    });
+
     // Load default images on first install
     browser.runtime.onInstalled.addListener(async (details) => {
       console.log('[DEBUG] onInstalled event fired. Reason:', details.reason, 'Version:', browser.runtime.getManifest().version);
@@ -216,20 +355,20 @@ export default defineBackground({
       }
     });
 
-    // Initialize badge on startup - set gray badge with space for all tabs
-    browser.tabs.query({}).then(tabs => {
-      tabs.forEach(tab => {
+    // Initialize badge on startup - set correct state for all tabs
+    browser.tabs.query({}).then(async tabs => {
+      // Find the currently active tab
+      const activeTab = tabs.find(tab => tab.active);
+      if (activeTab?.id) {
+        previousActiveTabId = activeTab.id;
+      }
+
+      // Update icon state for all tabs
+      for (const tab of tabs) {
         if (tab.id) {
-          browser.action.setBadgeBackgroundColor({
-            color: '#6B7280',
-            tabId: tab.id
-          });
-          browser.action.setBadgeText({
-            text: ' ',
-            tabId: tab.id
-          });
+          await updateIconState(tab.id, tab.url);
         }
-      });
+      }
     });
   },
 });
