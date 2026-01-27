@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "Screen Saver",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Customizable screen saver for your web browser",
+    "description": "Extension description"
+  },
+  "actionTitle": {
+    "message": "Toggle Screen Saver",
+    "description": "Extension icon tooltip"
+  },
+  "notificationRestrictedTitle": {
+    "message": "Screen Saver Unavailable",
+    "description": "Restricted page notification title"
+  },
+  "notificationRestrictedMessage": {
+    "message": "Screen saver cannot be used on browser internal pages (chrome://, edge://, etc.) for security reasons.",
+    "description": "Restricted page notification message"
+  },
+  "notificationActivatedTitle": {
+    "message": "Screen Saver Activated",
+    "description": "Activation notification title"
+  },
+  "notificationActivatedMessage": {
+    "message": "Press ESC to exit.",
+    "description": "Activation notification message"
+  },
+  "iconTitleRestricted": {
+    "message": "Screen Saver Unavailable (Browser Internal Page)",
+    "description": "Restricted page icon tooltip"
+  },
+  "iconTitleNormal": {
+    "message": "Toggle Screen Saver",
+    "description": "Normal page icon tooltip"
+  },
+  "loadingText": {
+    "message": "Loading...",
+    "description": "Image loading text"
+  },
+  "errorTitle": {
+    "message": "Unable to load image",
+    "description": "Image load error title"
+  },
+  "errorMessage": {
+    "message": "Check settings to enable images",
+    "description": "Image load error message"
+  }
+}

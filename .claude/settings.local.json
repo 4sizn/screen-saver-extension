@@ -37,7 +37,10 @@
       "Skill(gsd:new-milestone)",
       "Bash(find:*)",
       "Bash(git push)",
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Bash(npm version patch)",
+      "Bash(git stash:*)",
+      "Bash(git push:*)"
     ]
   }
 }

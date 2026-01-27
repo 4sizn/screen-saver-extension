@@ -1,0 +1,50 @@
+{
+  "extName": {
+    "message": "スクリーンセーバー",
+    "description": "拡張機能名"
+  },
+  "extDescription": {
+    "message": "Webブラウザ用のカスタマイズ可能なスクリーンセーバー",
+    "description": "拡張機能の説明"
+  },
+  "actionTitle": {
+    "message": "スクリーンセーバーの切り替え",
+    "description": "拡張機能アイコンのツールチップ"
+  },
+  "notificationRestrictedTitle": {
+    "message": "スクリーンセーバーが使用できません",
+    "description": "制限されたページの通知タイトル"
+  },
+  "notificationRestrictedMessage": {
+    "message": "セキュリティ上の理由により、ブラウザ内部ページ（chrome://、edge://など）ではスクリーンセーバーを使用できません。",
+    "description": "制限されたページの通知メッセージ"
+  },
+  "notificationActivatedTitle": {
+    "message": "スクリーンセーバーが有効になりました",
+    "description": "アクティブ化通知タイトル"
+  },
+  "notificationActivatedMessage": {
+    "message": "ESCキーを押して終了してください。",
+    "description": "アクティブ化通知メッセージ"
+  },
+  "iconTitleRestricted": {
+    "message": "スクリーンセーバーが使用できません（ブラウザ内部ページ）",
+    "description": "制限されたページのアイコンツールチップ"
+  },
+  "iconTitleNormal": {
+    "message": "スクリーンセーバーの切り替え",
+    "description": "通常のページのアイコンツールチップ"
+  },
+  "loadingText": {
+    "message": "読み込み中...",
+    "description": "画像読み込みテキスト"
+  },
+  "errorTitle": {
+    "message": "画像を読み込めません",
+    "description": "画像読み込みエラータイトル"
+  },
+  "errorMessage": {
+    "message": "設定で画像を有効にしてください",
+    "description": "画像読み込みエラーメッセージ"
+  }
+}
