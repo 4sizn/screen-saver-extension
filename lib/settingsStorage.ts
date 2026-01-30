@@ -43,3 +43,23 @@ export const clockSettings = storage.defineItem<ClockSettings>(
     },
   }
 );
+
+/**
+ * Language settings for UI localization
+ */
+export interface LanguageSettings {
+  locale: 'en' | 'ko' | 'ja' | 'de';
+}
+
+/**
+ * Persistent language settings stored in chrome.storage.sync
+ * Automatically syncs across devices and browser sessions
+ */
+export const languageSettings = storage.defineItem<LanguageSettings>(
+  'sync:languageSettings',
+  {
+    fallback: {
+      locale: 'en',
+    },
+  }
+);

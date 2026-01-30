@@ -1,0 +1,14 @@
+TABS PERMISSION JUSTIFICATION (for Chrome Web Store submission form)
+================================================================================
+
+The "tabs" permission is used solely to detect browser internal pages
+(chrome://, edge://, about:, etc.) where screen savers cannot be activated
+due to browser security restrictions.
+
+When users click the extension icon, we read the current tab's URL to check
+if it's a restricted page. If so, we display a notification explaining why
+the screen saver cannot be used. This prevents errors and provides clear
+user feedback.
+
+We do NOT collect, store, or transmit any browsing data. The URL check
+happens locally and is only used for feature validation.

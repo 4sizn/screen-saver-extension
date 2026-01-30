@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "スクリーンセーバー",
+    "message": "Screen Saver",
     "description": "拡張機能名"
   },
   "extDescription": {
@@ -46,5 +46,153 @@
   "errorMessage": {
     "message": "設定で画像を有効にしてください",
     "description": "画像読み込みエラーメッセージ"
+  },
+  "settingsTitle": {
+    "message": "Screen Saver 設定",
+    "description": "オプションページタイトル"
+  },
+  "settingsSubtitle": {
+    "message": "画像コレクションを管理し、スクリーンセーバー体験をカスタマイズします",
+    "description": "オプションページサブタイトル"
+  },
+  "languageSettingsTitle": {
+    "message": "言語設定",
+    "description": "言語設定セクションタイトル"
+  },
+  "displayLanguageLabel": {
+    "message": "表示言語",
+    "description": "表示言語ラベル"
+  },
+  "displaySettingsTitle": {
+    "message": "表示設定",
+    "description": "表示設定セクションタイトル"
+  },
+  "imageFitLabel": {
+    "message": "画像フィット",
+    "description": "画像フィットラベル"
+  },
+  "coverTitle": {
+    "message": "カバー",
+    "description": "カバーフィットモードタイトル"
+  },
+  "coverDescription": {
+    "message": "画面いっぱいに画像を切り抜き表示（レターボックスなし）",
+    "description": "カバーフィットモード説明"
+  },
+  "containTitle": {
+    "message": "全体表示",
+    "description": "全体表示フィットモードタイトル"
+  },
+  "containDescription": {
+    "message": "必要に応じてレターボックスバーで画像全体を表示",
+    "description": "全体表示フィットモード説明"
+  },
+  "backgroundColorLabel": {
+    "message": "背景色",
+    "description": "背景色ラベル"
+  },
+  "backgroundColorDescription": {
+    "message": "レターボックスエリア（全体表示モード）または透明画像の背後に表示されます",
+    "description": "背景色説明"
+  },
+  "clockSettingsTitle": {
+    "message": "デジタル時計",
+    "description": "時計設定セクションタイトル"
+  },
+  "showClockLabel": {
+    "message": "時計を表示",
+    "description": "時計を表示ラベル"
+  },
+  "showClockDescription": {
+    "message": "スクリーンセーバーにデジタル時計を表示",
+    "description": "時計を表示説明"
+  },
+  "timezoneLabel": {
+    "message": "タイムゾーン",
+    "description": "タイムゾーンラベル"
+  },
+  "timezoneDescription": {
+    "message": "デジタル時計のタイムゾーンを選択してください",
+    "description": "タイムゾーン説明"
+  },
+  "selectTimezonePlaceholder": {
+    "message": "タイムゾーンを選択",
+    "description": "タイムゾーン選択プレースホルダー"
+  },
+  "uploadImagesTitle": {
+    "message": "カスタム画像をアップロード",
+    "description": "画像アップロードセクションタイトル"
+  },
+  "chooseImageButton": {
+    "message": "画像を選択",
+    "description": "画像を選択ボタン"
+  },
+  "compressingButton": {
+    "message": "圧縮中...",
+    "description": "圧縮中ボタンテキスト"
+  },
+  "supportedFormats": {
+    "message": "サポート: JPEG, PNG, WebP（最大10MB）",
+    "description": "サポートされている形式テキスト"
+  },
+  "imageOptimization": {
+    "message": "画像は1920x1080、約500KBに最適化されます",
+    "description": "画像最適化テキスト"
+  },
+  "uploadSuccess": {
+    "message": "画像が正常にアップロードされました！",
+    "description": "アップロード成功メッセージ"
+  },
+  "originalSize": {
+    "message": "元のサイズ",
+    "description": "元のサイズラベル"
+  },
+  "compressedSize": {
+    "message": "圧縮後",
+    "description": "圧縮後サイズラベル"
+  },
+  "uploadFailed": {
+    "message": "画像のアップロードに失敗しました。もう一度お試しください。",
+    "description": "アップロード失敗メッセージ"
+  },
+  "previewAlt": {
+    "message": "プレビュー",
+    "description": "プレビュー画像alt テキスト"
+  },
+  "yourImagesTitle": {
+    "message": "あなたの画像",
+    "description": "あなたの画像セクションタイトル"
+  },
+  "noImagesMessage": {
+    "message": "まだ画像がありません。上で最初の画像をアップロードしてください！",
+    "description": "画像なしメッセージ"
+  },
+  "defaultBadge": {
+    "message": "デフォルト",
+    "description": "デフォルトバッジテキスト"
+  },
+  "bundledImage": {
+    "message": "バンドル画像",
+    "description": "バンドル画像テキスト"
+  },
+  "enabledLabel": {
+    "message": "有効",
+    "description": "有効ラベル"
+  },
+  "disabledLabel": {
+    "message": "無効",
+    "description": "無効ラベル"
+  },
+  "deleteButton": {
+    "message": "削除",
+    "description": "削除ボタン"
+  },
+  "deleteConfirm": {
+    "message": "この画像を削除しますか？",
+    "description": "削除確認メッセージ"
+  },
+  "cannotDeleteDefault": {
+    "message": "デフォルト画像は削除できません",
+    "description": "デフォルト画像削除不可メッセージ"
   }
 }
