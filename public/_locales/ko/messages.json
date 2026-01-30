@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "스크린 세이버",
+    "message": "Screen Saver",
     "description": "확장 프로그램 이름"
   },
   "extDescription": {
@@ -46,5 +46,153 @@
   "errorMessage": {
     "message": "설정에서 이미지를 활성화하세요",
     "description": "이미지 로드 오류 메시지"
+  },
+  "settingsTitle": {
+    "message": "Screen Saver 설정",
+    "description": "옵션 페이지 제목"
+  },
+  "settingsSubtitle": {
+    "message": "이미지 컬렉션을 관리하고 스크린세이버 환경을 사용자 정의하세요",
+    "description": "옵션 페이지 부제목"
+  },
+  "languageSettingsTitle": {
+    "message": "언어 설정",
+    "description": "언어 설정 섹션 제목"
+  },
+  "displayLanguageLabel": {
+    "message": "표시 언어",
+    "description": "표시 언어 레이블"
+  },
+  "displaySettingsTitle": {
+    "message": "디스플레이 설정",
+    "description": "디스플레이 설정 섹션 제목"
+  },
+  "imageFitLabel": {
+    "message": "이미지 맞춤",
+    "description": "이미지 맞춤 레이블"
+  },
+  "coverTitle": {
+    "message": "꽉 채우기",
+    "description": "꽉 채우기 모드 제목"
+  },
+  "coverDescription": {
+    "message": "이미지를 잘라서 화면에 꽉 채움 (레터박스 없음)",
+    "description": "꽉 채우기 모드 설명"
+  },
+  "containTitle": {
+    "message": "전체 보기",
+    "description": "전체 보기 모드 제목"
+  },
+  "containDescription": {
+    "message": "필요시 레터박스와 함께 전체 이미지 표시",
+    "description": "전체 보기 모드 설명"
+  },
+  "backgroundColorLabel": {
+    "message": "배경 색상",
+    "description": "배경 색상 레이블"
+  },
+  "backgroundColorDescription": {
+    "message": "레터박스 영역(전체 보기 모드) 또는 투명 이미지 뒤에 표시됨",
+    "description": "배경 색상 설명"
+  },
+  "clockSettingsTitle": {
+    "message": "디지털 시계",
+    "description": "시계 설정 섹션 제목"
+  },
+  "showClockLabel": {
+    "message": "시계 표시",
+    "description": "시계 표시 레이블"
+  },
+  "showClockDescription": {
+    "message": "스크린세이버에 디지털 시계 표시",
+    "description": "시계 표시 설명"
+  },
+  "timezoneLabel": {
+    "message": "시간대",
+    "description": "시간대 레이블"
+  },
+  "timezoneDescription": {
+    "message": "디지털 시계의 시간대를 선택하세요",
+    "description": "시간대 설명"
+  },
+  "selectTimezonePlaceholder": {
+    "message": "시간대 선택",
+    "description": "시간대 선택 플레이스홀더"
+  },
+  "uploadImagesTitle": {
+    "message": "사용자 정의 이미지 업로드",
+    "description": "이미지 업로드 섹션 제목"
+  },
+  "chooseImageButton": {
+    "message": "이미지 선택",
+    "description": "이미지 선택 버튼"
+  },
+  "compressingButton": {
+    "message": "압축 중...",
+    "description": "압축 중 버튼 텍스트"
+  },
+  "supportedFormats": {
+    "message": "지원: JPEG, PNG, WebP (최대 10MB)",
+    "description": "지원 형식 텍스트"
+  },
+  "imageOptimization": {
+    "message": "이미지는 1920x1080, ~500KB로 최적화됩니다",
+    "description": "이미지 최적화 텍스트"
+  },
+  "uploadSuccess": {
+    "message": "이미지가 성공적으로 업로드되었습니다!",
+    "description": "업로드 성공 메시지"
+  },
+  "originalSize": {
+    "message": "원본",
+    "description": "원본 크기 레이블"
+  },
+  "compressedSize": {
+    "message": "압축됨",
+    "description": "압축 크기 레이블"
+  },
+  "uploadFailed": {
+    "message": "이미지 업로드에 실패했습니다. 다시 시도해주세요.",
+    "description": "업로드 실패 메시지"
+  },
+  "previewAlt": {
+    "message": "미리보기",
+    "description": "미리보기 이미지 alt 텍스트"
+  },
+  "yourImagesTitle": {
+    "message": "내 이미지",
+    "description": "내 이미지 섹션 제목"
+  },
+  "noImagesMessage": {
+    "message": "아직 이미지가 없습니다. 위에서 첫 번째 이미지를 업로드하세요!",
+    "description": "이미지 없음 메시지"
+  },
+  "defaultBadge": {
+    "message": "기본",
+    "description": "기본 배지 텍스트"
+  },
+  "bundledImage": {
+    "message": "번들 이미지",
+    "description": "번들 이미지 텍스트"
+  },
+  "enabledLabel": {
+    "message": "활성화됨",
+    "description": "활성화 레이블"
+  },
+  "disabledLabel": {
+    "message": "비활성화됨",
+    "description": "비활성화 레이블"
+  },
+  "deleteButton": {
+    "message": "삭제",
+    "description": "삭제 버튼"
+  },
+  "deleteConfirm": {
+    "message": "이 이미지를 삭제하시겠습니까?",
+    "description": "삭제 확인 메시지"
+  },
+  "cannotDeleteDefault": {
+    "message": "기본 이미지는 삭제할 수 없습니다",
+    "description": "기본 이미지 삭제 불가 메시지"
   }
 }

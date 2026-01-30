@@ -46,5 +46,153 @@
   "errorMessage": {
     "message": "Check settings to enable images",
     "description": "Image load error message"
+  },
+  "settingsTitle": {
+    "message": "Screen Saver Settings",
+    "description": "Options page title"
+  },
+  "settingsSubtitle": {
+    "message": "Manage your image collection and customize your screen saver experience",
+    "description": "Options page subtitle"
+  },
+  "languageSettingsTitle": {
+    "message": "Language Settings",
+    "description": "Language settings section title"
+  },
+  "displayLanguageLabel": {
+    "message": "Display Language",
+    "description": "Display language label"
+  },
+  "displaySettingsTitle": {
+    "message": "Display Settings",
+    "description": "Display settings section title"
+  },
+  "imageFitLabel": {
+    "message": "Image Fit",
+    "description": "Image fit label"
+  },
+  "coverTitle": {
+    "message": "Cover",
+    "description": "Cover fit mode title"
+  },
+  "coverDescription": {
+    "message": "Crop image to fill screen (no letterbox)",
+    "description": "Cover fit mode description"
+  },
+  "containTitle": {
+    "message": "Contain",
+    "description": "Contain fit mode title"
+  },
+  "containDescription": {
+    "message": "Show full image with letterbox bars if needed",
+    "description": "Contain fit mode description"
+  },
+  "backgroundColorLabel": {
+    "message": "Background Color",
+    "description": "Background color label"
+  },
+  "backgroundColorDescription": {
+    "message": "Appears in letterbox areas (contain mode) or behind transparent images",
+    "description": "Background color description"
+  },
+  "clockSettingsTitle": {
+    "message": "Digital Clock",
+    "description": "Clock settings section title"
+  },
+  "showClockLabel": {
+    "message": "Show Clock",
+    "description": "Show clock label"
+  },
+  "showClockDescription": {
+    "message": "Display a digital clock on the screen saver",
+    "description": "Show clock description"
+  },
+  "timezoneLabel": {
+    "message": "Timezone",
+    "description": "Timezone label"
+  },
+  "timezoneDescription": {
+    "message": "Select the timezone for the digital clock",
+    "description": "Timezone description"
+  },
+  "selectTimezonePlaceholder": {
+    "message": "Select timezone",
+    "description": "Select timezone placeholder"
+  },
+  "uploadImagesTitle": {
+    "message": "Upload Custom Images",
+    "description": "Upload images section title"
+  },
+  "chooseImageButton": {
+    "message": "Choose Image",
+    "description": "Choose image button"
+  },
+  "compressingButton": {
+    "message": "Compressing...",
+    "description": "Compressing button text"
+  },
+  "supportedFormats": {
+    "message": "Supported: JPEG, PNG, WebP (max 10MB)",
+    "description": "Supported formats text"
+  },
+  "imageOptimization": {
+    "message": "Images optimized to 1920x1080, ~500KB",
+    "description": "Image optimization text"
+  },
+  "uploadSuccess": {
+    "message": "Image uploaded successfully!",
+    "description": "Upload success message"
+  },
+  "originalSize": {
+    "message": "Original",
+    "description": "Original size label"
+  },
+  "compressedSize": {
+    "message": "Compressed",
+    "description": "Compressed size label"
+  },
+  "uploadFailed": {
+    "message": "Failed to upload image. Please try again.",
+    "description": "Upload failed message"
+  },
+  "previewAlt": {
+    "message": "Preview",
+    "description": "Preview image alt text"
+  },
+  "yourImagesTitle": {
+    "message": "Your Images",
+    "description": "Your images section title"
+  },
+  "noImagesMessage": {
+    "message": "No images yet. Upload your first image above!",
+    "description": "No images message"
+  },
+  "defaultBadge": {
+    "message": "DEFAULT",
+    "description": "Default badge text"
+  },
+  "bundledImage": {
+    "message": "Bundled image",
+    "description": "Bundled image text"
+  },
+  "enabledLabel": {
+    "message": "Enabled",
+    "description": "Enabled label"
+  },
+  "disabledLabel": {
+    "message": "Disabled",
+    "description": "Disabled label"
+  },
+  "deleteButton": {
+    "message": "Delete",
+    "description": "Delete button"
+  },
+  "deleteConfirm": {
+    "message": "Delete this image?",
+    "description": "Delete confirmation message"
+  },
+  "cannotDeleteDefault": {
+    "message": "Cannot delete default images",
+    "description": "Cannot delete default images message"
   }
 }

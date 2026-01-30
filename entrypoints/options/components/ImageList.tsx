@@ -23,6 +23,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
+import { useTranslation } from '@/lib/useTranslation';
 
 function SortableImage({
   item,
@@ -33,6 +34,7 @@ function SortableImage({
   onDelete: (id: string) => void;
   onToggle: (id: string) => void;
 }) {
+  const { t } = useTranslation();
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.id });
 
@@ -81,7 +83,7 @@ function SortableImage({
         {/* VISUAL INDICATOR: Badge overlay for default images */}
         {item.isDefault && (
           <div className="absolute top-0 left-0 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-br">
-            DEFAULT
+            {t('defaultBadge')}
           </div>
         )}
       </div>
@@ -103,7 +105,7 @@ function SortableImage({
                 clipRule="evenodd"
               />
             </svg>
-            <span className="text-xs text-blue-600">Bundled image</span>
+            <span className="text-xs text-blue-600">{t('bundledImage')}</span>
           </div>
         )}
       </div>
@@ -119,7 +121,7 @@ function SortableImage({
           htmlFor={`enable-${item.id}`}
           className="text-sm cursor-pointer"
         >
-          {item.isEnabled ? 'Enabled' : 'Disabled'}
+          {item.isEnabled ? t('enabledLabel') : t('disabledLabel')}
         </Label>
       </div>
 
@@ -130,7 +132,7 @@ function SortableImage({
           size="sm"
           onClick={() => onDelete(item.id)}
         >
-          Delete
+          {t('deleteButton')}
         </Button>
       )}
     </div>
@@ -138,6 +140,7 @@ function SortableImage({
 }
 
 export default function ImageList() {
+  const { t } = useTranslation();
   const [items, setItems] = useState<ImageRecord[]>([]);
 
   const sensors = useSensors(
@@ -179,12 +182,12 @@ export default function ImageList() {
   }
 
   async function handleDelete(id: string) {
-    if (confirm('Delete this image?')) {
+    if (confirm(t('deleteConfirm'))) {
       try {
         await deleteImage(id);
         await loadImages();
       } catch (error) {
-        alert('Cannot delete default images');
+        alert(t('cannotDeleteDefault'));
       }
     }
   }
@@ -197,12 +200,12 @@ export default function ImageList() {
   return (
     <Card className="mt-8">
       <CardHeader>
-        <CardTitle>Your Images ({items.length})</CardTitle>
+        <CardTitle>{t('yourImagesTitle')} ({items.length})</CardTitle>
       </CardHeader>
       <CardContent>
         {items.length === 0 ? (
           <p className="text-gray-500 text-center py-8">
-            No images yet. Upload your first image above!
+            {t('noImagesMessage')}
           </p>
         ) : (
           <DndContext

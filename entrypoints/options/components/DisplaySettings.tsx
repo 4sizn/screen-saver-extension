@@ -4,8 +4,10 @@ import { Label } from '@/components/ui/label';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { displaySettings } from '@/lib/settingsStorage';
 import type { DisplaySettings as DisplaySettingsType } from '@/lib/settingsStorage';
+import { useTranslation } from '@/lib/useTranslation';
 
 export function DisplaySettings() {
+  const { t } = useTranslation();
   const [settings, setSettings] = useState<DisplaySettingsType>({
     imageFit: 'cover',
     backgroundColor: '#000000',
@@ -46,12 +48,12 @@ export function DisplaySettings() {
   return (
     <Card className="mb-6">
       <CardHeader>
-        <CardTitle>Display Settings</CardTitle>
+        <CardTitle>{t('displaySettingsTitle')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Image Fit Selector */}
         <div>
-          <Label className="text-base font-medium mb-3 block">Image Fit</Label>
+          <Label className="text-base font-medium mb-3 block">{t('imageFitLabel')}</Label>
           <div className="space-y-2">
             <label className="flex items-center space-x-3 cursor-pointer">
               <input
@@ -63,9 +65,9 @@ export function DisplaySettings() {
                 className="w-4 h-4 text-blue-600"
               />
               <div>
-                <div className="font-medium">Cover</div>
+                <div className="font-medium">{t('coverTitle')}</div>
                 <div className="text-sm text-gray-600">
-                  Crop image to fill screen (no letterbox)
+                  {t('coverDescription')}
                 </div>
               </div>
             </label>
@@ -79,9 +81,9 @@ export function DisplaySettings() {
                 className="w-4 h-4 text-blue-600"
               />
               <div>
-                <div className="font-medium">Contain</div>
+                <div className="font-medium">{t('containTitle')}</div>
                 <div className="text-sm text-gray-600">
-                  Show full image with letterbox bars if needed
+                  {t('containDescription')}
                 </div>
               </div>
             </label>
@@ -91,10 +93,10 @@ export function DisplaySettings() {
         {/* Background Color Picker */}
         <div>
           <Label className="text-base font-medium mb-3 block">
-            Background Color
+            {t('backgroundColorLabel')}
           </Label>
           <p className="text-sm text-gray-600 mb-3">
-            Appears in letterbox areas (contain mode) or behind transparent images
+            {t('backgroundColorDescription')}
           </p>
           <div className="space-y-3">
             <HexColorPicker color={colorInput} onChange={setColorInput} />

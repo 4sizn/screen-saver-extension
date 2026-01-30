@@ -12,8 +12,10 @@ import {
 import { clockSettings } from '@/lib/settingsStorage';
 import type { ClockSettings as ClockSettingsType } from '@/lib/settingsStorage';
 import { TIMEZONES, getLocalTimezone } from '@/lib/timezones';
+import { useTranslation } from '@/lib/useTranslation';
 
 export function ClockSettings() {
+  const { t } = useTranslation();
   const [settings, setSettings] = useState<ClockSettingsType>({
     enabled: false,
     timezone: getLocalTimezone(),
@@ -45,15 +47,15 @@ export function ClockSettings() {
   return (
     <Card className="mb-6">
       <CardHeader>
-        <CardTitle>Digital Clock</CardTitle>
+        <CardTitle>{t('clockSettingsTitle')}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Clock Toggle */}
         <div className="flex items-center justify-between">
           <div className="space-y-0.5">
-            <Label className="text-base font-medium">Show Clock</Label>
+            <Label className="text-base font-medium">{t('showClockLabel')}</Label>
             <div className="text-sm text-gray-600">
-              Display a digital clock on the screen saver
+              {t('showClockDescription')}
             </div>
           </div>
           <Switch
@@ -65,13 +67,13 @@ export function ClockSettings() {
         {/* Timezone Selector - Only shown when enabled */}
         {settings.enabled && (
           <div>
-            <Label className="text-base font-medium mb-3 block">Timezone</Label>
+            <Label className="text-base font-medium mb-3 block">{t('timezoneLabel')}</Label>
             <p className="text-sm text-gray-600 mb-3">
-              Select the timezone for the digital clock
+              {t('timezoneDescription')}
             </p>
             <Select value={settings.timezone} onValueChange={handleTimezoneChange}>
               <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select timezone" />
+                <SelectValue placeholder={t('selectTimezonePlaceholder')} />
               </SelectTrigger>
               <SelectContent>
                 {TIMEZONES.map((tz) => (

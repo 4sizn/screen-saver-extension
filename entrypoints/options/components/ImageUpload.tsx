@@ -3,8 +3,10 @@ import { compressImage, validateImageFile } from '@/lib/imageProcessing';
 import { saveImage } from '@/lib/imageStorage';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { useTranslation } from '@/lib/useTranslation';
 
 export default function ImageUpload() {
+  const { t } = useTranslation();
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -38,7 +40,7 @@ export default function ImageUpload() {
       const originalSizeMB = (file.size / 1024 / 1024).toFixed(2);
       const compressedSizeMB = (compressedBlob.size / 1024 / 1024).toFixed(2);
       alert(
-        `Image uploaded successfully!\n\nOriginal: ${originalSizeMB}MB\nCompressed: ${compressedSizeMB}MB`
+        `${t('uploadSuccess')}\n\n${t('originalSize')}: ${originalSizeMB}MB\n${t('compressedSize')}: ${compressedSizeMB}MB`
       );
 
       // Clean up
@@ -50,7 +52,7 @@ export default function ImageUpload() {
       window.dispatchEvent(new CustomEvent('image-uploaded'));
     } catch (error) {
       console.error('Upload failed:', error);
-      alert('Failed to upload image. Please try again.');
+      alert(t('uploadFailed'));
     } finally {
       setUploading(false);
     }
@@ -59,7 +61,7 @@ export default function ImageUpload() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Upload Custom Images</CardTitle>
+        <CardTitle>{t('uploadImagesTitle')}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
@@ -75,23 +77,23 @@ export default function ImageUpload() {
             onClick={() => fileInputRef.current?.click()}
             disabled={uploading}
           >
-            {uploading ? 'Compressing...' : 'Choose Image'}
+            {uploading ? t('compressingButton') : t('chooseImageButton')}
           </Button>
 
           {preview && (
             <div className="mt-4">
               <img
                 src={preview}
-                alt="Preview"
+                alt={t('previewAlt')}
                 className="max-w-md mx-auto rounded-lg shadow-lg"
               />
             </div>
           )}
 
           <p className="mt-4 text-sm text-gray-500">
-            Supported: JPEG, PNG, WebP (max 10MB)
+            {t('supportedFormats')}
             <br />
-            Images optimized to 1920x1080, ~500KB
+            {t('imageOptimization')}
           </p>
         </div>
       </CardContent>

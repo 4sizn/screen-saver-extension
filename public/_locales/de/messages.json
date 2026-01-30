@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "Bildschirmschoner",
+    "message": "Screen Saver",
     "description": "Name der Erweiterung"
   },
   "extDescription": {
@@ -46,5 +46,153 @@
   "errorMessage": {
     "message": "Überprüfen Sie die Einstellungen, um Bilder zu aktivieren",
     "description": "Nachricht des Bildladefehlers"
+  },
+  "settingsTitle": {
+    "message": "Screen Saver Einstellungen",
+    "description": "Optionsseitentitel"
+  },
+  "settingsSubtitle": {
+    "message": "Verwalten Sie Ihre Bildsammlung und passen Sie Ihr Bildschirmschoner-Erlebnis an",
+    "description": "Optionsseitenuntertitel"
+  },
+  "languageSettingsTitle": {
+    "message": "Spracheinstellungen",
+    "description": "Spracheinstellungsabschnittstitel"
+  },
+  "displayLanguageLabel": {
+    "message": "Anzeigesprache",
+    "description": "Anzeigesprachen-Label"
+  },
+  "displaySettingsTitle": {
+    "message": "Anzeigeeinstellungen",
+    "description": "Anzeigeeinstellungsabschnittstitel"
+  },
+  "imageFitLabel": {
+    "message": "Bildanpassung",
+    "description": "Bildanpassungslabel"
+  },
+  "coverTitle": {
+    "message": "Abdecken",
+    "description": "Abdecken-Anpassungsmodusbezeichnung"
+  },
+  "coverDescription": {
+    "message": "Bild zuschneiden, um den Bildschirm zu füllen (keine Letterbox)",
+    "description": "Abdecken-Anpassungsmodusbeschreibung"
+  },
+  "containTitle": {
+    "message": "Enthalten",
+    "description": "Enthalten-Anpassungsmodusbezeichnung"
+  },
+  "containDescription": {
+    "message": "Vollständiges Bild mit Letterbox-Balken anzeigen, falls erforderlich",
+    "description": "Enthalten-Anpassungsmodusbeschreibung"
+  },
+  "backgroundColorLabel": {
+    "message": "Hintergrundfarbe",
+    "description": "Hintergrundfarben-Label"
+  },
+  "backgroundColorDescription": {
+    "message": "Erscheint in Letterbox-Bereichen (Enthalten-Modus) oder hinter transparenten Bildern",
+    "description": "Hintergrundfarbenbeschreibung"
+  },
+  "clockSettingsTitle": {
+    "message": "Digitaluhr",
+    "description": "Uhreinstellungsabschnittstitel"
+  },
+  "showClockLabel": {
+    "message": "Uhr anzeigen",
+    "description": "Uhr anzeigen-Label"
+  },
+  "showClockDescription": {
+    "message": "Eine Digitaluhr auf dem Bildschirmschoner anzeigen",
+    "description": "Uhr anzeigen-Beschreibung"
+  },
+  "timezoneLabel": {
+    "message": "Zeitzone",
+    "description": "Zeitzonen-Label"
+  },
+  "timezoneDescription": {
+    "message": "Wählen Sie die Zeitzone für die Digitaluhr",
+    "description": "Zeitzonenbeschreibung"
+  },
+  "selectTimezonePlaceholder": {
+    "message": "Zeitzone auswählen",
+    "description": "Zeitzone auswählen-Platzhalter"
+  },
+  "uploadImagesTitle": {
+    "message": "Benutzerdefinierte Bilder hochladen",
+    "description": "Bilder hochladen-Abschnittstitel"
+  },
+  "chooseImageButton": {
+    "message": "Bild auswählen",
+    "description": "Bild auswählen-Schaltfläche"
+  },
+  "compressingButton": {
+    "message": "Komprimieren...",
+    "description": "Komprimieren-Schaltflächentext"
+  },
+  "supportedFormats": {
+    "message": "Unterstützt: JPEG, PNG, WebP (max 10MB)",
+    "description": "Unterstützte Formate-Text"
+  },
+  "imageOptimization": {
+    "message": "Bilder werden auf 1920x1080, ~500KB optimiert",
+    "description": "Bildoptimierungstext"
+  },
+  "uploadSuccess": {
+    "message": "Bild erfolgreich hochgeladen!",
+    "description": "Upload erfolgreich-Nachricht"
+  },
+  "originalSize": {
+    "message": "Original",
+    "description": "Originalgröße-Label"
+  },
+  "compressedSize": {
+    "message": "Komprimiert",
+    "description": "Komprimierte Größe-Label"
+  },
+  "uploadFailed": {
+    "message": "Bild konnte nicht hochgeladen werden. Bitte versuchen Sie es erneut.",
+    "description": "Upload fehlgeschlagen-Nachricht"
+  },
+  "previewAlt": {
+    "message": "Vorschau",
+    "description": "Vorschaubild-alt-Text"
+  },
+  "yourImagesTitle": {
+    "message": "Ihre Bilder",
+    "description": "Ihre Bilder-Abschnittstitel"
+  },
+  "noImagesMessage": {
+    "message": "Noch keine Bilder. Laden Sie Ihr erstes Bild oben hoch!",
+    "description": "Keine Bilder-Nachricht"
+  },
+  "defaultBadge": {
+    "message": "STANDARD",
+    "description": "Standard-Abzeichentext"
+  },
+  "bundledImage": {
+    "message": "Gebündeltes Bild",
+    "description": "Gebündeltes Bild-Text"
+  },
+  "enabledLabel": {
+    "message": "Aktiviert",
+    "description": "Aktiviert-Label"
+  },
+  "disabledLabel": {
+    "message": "Deaktiviert",
+    "description": "Deaktiviert-Label"
+  },
+  "deleteButton": {
+    "message": "Löschen",
+    "description": "Löschen-Schaltfläche"
+  },
+  "deleteConfirm": {
+    "message": "Dieses Bild löschen?",
+    "description": "Löschbestätigungsnachricht"
+  },
+  "cannotDeleteDefault": {
+    "message": "Standardbilder können nicht gelöscht werden",
+    "description": "Standard kann nicht gelöscht werden-Nachricht"
   }
 }
