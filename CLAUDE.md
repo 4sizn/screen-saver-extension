@@ -14,6 +14,8 @@
 8. [GitHub 릴리즈 생성](#-github-릴리즈-생성)
 9. [Chrome Web Store 배포](#-chrome-web-store-배포)
 10. [프로젝트 구조](#-프로젝트-구조)
+11. [제한된 페이지](#-제한된-페이지)
+12. [문제 해결](#-문제-해결)
 
 ---
 
@@ -345,6 +347,98 @@ screen-saver-web/
 ├── package.json           # 프로젝트 메타데이터
 └── tsconfig.json          # TypeScript 설정
 ```
+
+---
+
+## 🚫 제한된 페이지
+
+Chrome의 보안 정책상 일부 페이지에서는 확장 프로그램이 동작하지 않습니다.
+
+### 제한되는 페이지 목록
+
+다음 페이지에서는 스크린세이버가 실행되지 않습니다:
+
+#### 제한된 프로토콜
+- **chrome://** - Chrome 내부 페이지
+  - 예: `chrome://extensions`, `chrome://settings`, `chrome://flags`
+- **chrome-extension://** - 다른 확장 프로그램 페이지
+- **edge://** - Edge 브라우저 내부 페이지
+- **about:** - 브라우저 정보 페이지
+- **view-source:** - 소스 보기 페이지
+
+#### 제한된 도메인
+- **chrome.google.com/webstore** - Chrome Web Store
+- **microsoftedge.microsoft.com/addons** - Edge 확장 프로그램 스토어
+- **accounts.google.com** - Google 계정 로그인 페이지
+- **myaccount.google.com** - Google 계정 관리 페이지
+
+### 제한 사유
+
+이러한 제한은 다음과 같은 보안상의 이유로 적용됩니다:
+
+1. **권한 상승 방지** - 악의적인 확장 프로그램이 브라우저 설정을 변경하거나 다른 확장 프로그램을 조작하는 것을 방지
+2. **사용자 인증 보호** - 로그인 페이지에서 비밀번호나 개인정보를 탈취하는 것을 방지
+3. **확장 프로그램 스토어 보안** - 스토어 페이지에서 부정한 방법으로 다운로드나 리뷰를 조작하는 것을 방지
+
+### 사용자 피드백
+
+제한된 페이지에서는 다음과 같은 UI 피드백이 제공됩니다:
+
+1. **아이콘 배지**: "✕" 표시 + 회색 배경색
+2. **툴팁 메시지**: "스크린세이버 사용 불가 (브라우저 내부 페이지)"
+3. **알림**: 아이콘 클릭 시 다음 메시지 표시
+   ```
+   스크린세이버 사용 불가
+   브라우저 내부 페이지(chrome://, edge:// 등)에서는
+   보안상의 이유로 스크린세이버를 사용할 수 없습니다.
+   ```
+
+### 구현 코드
+
+제한된 페이지 감지 로직은 `entrypoints/background.ts`에 구현되어 있습니다:
+
+```typescript
+function isRestrictedUrl(url?: string): boolean {
+  if (!url) return true;
+
+  const restrictedProtocols = [
+    'chrome://',
+    'chrome-extension://',
+    'edge://',
+    'about:',
+    'view-source:',
+  ];
+
+  const restrictedDomains = [
+    'chrome.google.com/webstore',
+    'microsoftedge.microsoft.com/addons',
+    'accounts.google.com',
+    'myaccount.google.com',
+  ];
+
+  // Check protocols
+  if (restrictedProtocols.some(protocol => url.startsWith(protocol))) {
+    return true;
+  }
+
+  // Check domains
+  if (restrictedDomains.some(domain => url.includes(domain))) {
+    return true;
+  }
+
+  return false;
+}
+```
+
+### 테스트 방법
+
+제한된 페이지 기능을 테스트하려면:
+
+1. Chrome Web Store (`https://chromewebstore.google.com/`) 방문
+2. 확장 프로그램 아이콘에 "✕" 배지가 표시되는지 확인
+3. 아이콘 위에 마우스를 올려 툴팁 확인
+4. 아이콘을 클릭하여 알림 메시지 확인
+5. 일반 웹페이지로 이동하여 정상 동작 확인
 
 ---
 
