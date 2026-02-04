@@ -63,3 +63,25 @@ export const languageSettings = storage.defineItem<LanguageSettings>(
     },
   }
 );
+
+/**
+ * Hotkey settings for keyboard shortcuts
+ */
+export interface HotkeySettings {
+  activateKey: string; // Empty string means no hotkey set
+  deactivateKey: string; // Default: 'Escape'
+}
+
+/**
+ * Persistent hotkey settings stored in chrome.storage.sync
+ * Automatically syncs across devices and browser sessions
+ */
+export const hotkeySettings = storage.defineItem<HotkeySettings>(
+  'sync:hotkeySettings',
+  {
+    fallback: {
+      activateKey: '', // Default: no hotkey for activation
+      deactivateKey: 'Escape', // Default: ESC key for deactivation
+    },
+  }
+);

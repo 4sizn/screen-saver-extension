@@ -194,5 +194,41 @@
   "cannotDeleteDefault": {
     "message": "기본 이미지는 삭제할 수 없습니다",
     "description": "기본 이미지 삭제 불가 메시지"
+  },
+  "hotkeySettingsTitle": {
+    "message": "단축키 설정",
+    "description": "단축키 설정 섹션 제목"
+  },
+  "hotkeySettingsDescription": {
+    "message": "스크린세이버를 활성화하거나 비활성화하는 키보드 단축키를 설정하세요",
+    "description": "단축키 설정 섹션 설명"
+  },
+  "hotkeyActivateLabel": {
+    "message": "프로그램 실행",
+    "description": "활성화 단축키 레이블"
+  },
+  "hotkeyDeactivateLabel": {
+    "message": "프로그램 취소",
+    "description": "비활성화 단축키 레이블"
+  },
+  "hotkeyInputPlaceholder": {
+    "message": "클릭 후 키를 누르세요",
+    "description": "단축키 입력 플레이스홀더"
+  },
+  "hotkeyRecordingHint": {
+    "message": "단축키를 입력하세요... (조합키 지원: Ctrl, Shift, Alt + 키)",
+    "description": "단축키 입력 힌트"
+  },
+  "hotkeyConflictWarning": {
+    "message": "이 단축키는 일반적인 브라우저 단축키와 충돌할 수 있습니다",
+    "description": "단축키 충돌 경고"
+  },
+  "hotkeyNotSet": {
+    "message": "설정 안 됨",
+    "description": "단축키 미설정 텍스트"
+  },
+  "hotkeyResetButton": {
+    "message": "초기화",
+    "description": "단축키 초기화 버튼"
   }
 }

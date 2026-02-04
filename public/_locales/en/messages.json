@@ -194,5 +194,41 @@
   "cannotDeleteDefault": {
     "message": "Cannot delete default images",
     "description": "Cannot delete default images message"
+  },
+  "hotkeySettingsTitle": {
+    "message": "Hotkey Settings",
+    "description": "Hotkey settings section title"
+  },
+  "hotkeySettingsDescription": {
+    "message": "Configure keyboard shortcuts to activate or deactivate the screen saver",
+    "description": "Hotkey settings section description"
+  },
+  "hotkeyActivateLabel": {
+    "message": "Activate Screen Saver",
+    "description": "Activate hotkey label"
+  },
+  "hotkeyDeactivateLabel": {
+    "message": "Deactivate Screen Saver",
+    "description": "Deactivate hotkey label"
+  },
+  "hotkeyInputPlaceholder": {
+    "message": "Click and press a key",
+    "description": "Hotkey input placeholder"
+  },
+  "hotkeyRecordingHint": {
+    "message": "Press any key combination... (Supports: Ctrl, Shift, Alt + key)",
+    "description": "Hotkey recording hint"
+  },
+  "hotkeyConflictWarning": {
+    "message": "This shortcut may conflict with common browser shortcuts",
+    "description": "Hotkey conflict warning"
+  },
+  "hotkeyNotSet": {
+    "message": "Not set",
+    "description": "Hotkey not set text"
+  },
+  "hotkeyResetButton": {
+    "message": "Reset",
+    "description": "Hotkey reset button"
   }
 }

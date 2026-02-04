@@ -194,5 +194,41 @@
   "cannotDeleteDefault": {
     "message": "デフォルト画像は削除できません",
     "description": "デフォルト画像削除不可メッセージ"
+  },
+  "hotkeySettingsTitle": {
+    "message": "ホットキー設定",
+    "description": "ホットキー設定セクションタイトル"
+  },
+  "hotkeySettingsDescription": {
+    "message": "スクリーンセーバーを有効化または無効化するキーボードショートカットを設定します",
+    "description": "ホットキー設定セクション説明"
+  },
+  "hotkeyActivateLabel": {
+    "message": "スクリーンセーバーを有効化",
+    "description": "有効化ホットキーラベル"
+  },
+  "hotkeyDeactivateLabel": {
+    "message": "スクリーンセーバーを無効化",
+    "description": "無効化ホットキーラベル"
+  },
+  "hotkeyInputPlaceholder": {
+    "message": "クリックしてキーを押してください",
+    "description": "ホットキー入力プレースホルダー"
+  },
+  "hotkeyRecordingHint": {
+    "message": "キーの組み合わせを押してください...（サポート：Ctrl、Shift、Alt + キー）",
+    "description": "ホットキー入力ヒント"
+  },
+  "hotkeyConflictWarning": {
+    "message": "このショートカットは一般的なブラウザショートカットと競合する可能性があります",
+    "description": "ホットキー競合警告"
+  },
+  "hotkeyNotSet": {
+    "message": "未設定",
+    "description": "ホットキー未設定テキスト"
+  },
+  "hotkeyResetButton": {
+    "message": "リセット",
+    "description": "ホットキーリセットボタン"
   }
 }

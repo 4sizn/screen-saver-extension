@@ -4,6 +4,7 @@ import './style.css';
 import LanguageSettings from './components/LanguageSettings';
 import DisplaySettings from './components/DisplaySettings';
 import ClockSettings from './components/ClockSettings';
+import HotkeySettings from './components/HotkeySettings';
 import ImageUpload from './components/ImageUpload';
 import ImageList from './components/ImageList';
 import { useTranslation } from '@/lib/useTranslation';
@@ -25,6 +26,7 @@ function OptionsApp() {
           <LanguageSettings />
           <DisplaySettings />
           <ClockSettings />
+          <HotkeySettings />
           <ImageUpload />
           <ImageList />
         </main>

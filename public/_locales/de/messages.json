@@ -194,5 +194,41 @@
   "cannotDeleteDefault": {
     "message": "Standardbilder können nicht gelöscht werden",
     "description": "Standard kann nicht gelöscht werden-Nachricht"
+  },
+  "hotkeySettingsTitle": {
+    "message": "Tastenkürzel-Einstellungen",
+    "description": "Tastenkürzel-Einstellungsabschnittstitel"
+  },
+  "hotkeySettingsDescription": {
+    "message": "Konfigurieren Sie Tastenkombinationen zum Aktivieren oder Deaktivieren des Bildschirmschoners",
+    "description": "Tastenkürzel-Einstellungsabschnittsbeschreibung"
+  },
+  "hotkeyActivateLabel": {
+    "message": "Bildschirmschoner aktivieren",
+    "description": "Aktivierungs-Tastenkürzel-Label"
+  },
+  "hotkeyDeactivateLabel": {
+    "message": "Bildschirmschoner deaktivieren",
+    "description": "Deaktivierungs-Tastenkürzel-Label"
+  },
+  "hotkeyInputPlaceholder": {
+    "message": "Klicken und Taste drücken",
+    "description": "Tastenkürzel-Eingabeplatzhalter"
+  },
+  "hotkeyRecordingHint": {
+    "message": "Drücken Sie eine beliebige Tastenkombination... (Unterstützt: Strg, Umschalt, Alt + Taste)",
+    "description": "Tastenkürzel-Aufzeichnungshinweis"
+  },
+  "hotkeyConflictWarning": {
+    "message": "Dieses Tastenkürzel kann mit gängigen Browser-Tastenkürzeln in Konflikt geraten",
+    "description": "Tastenkürzel-Konfliktwarnung"
+  },
+  "hotkeyNotSet": {
+    "message": "Nicht festgelegt",
+    "description": "Tastenkürzel nicht festgelegt-Text"
+  },
+  "hotkeyResetButton": {
+    "message": "Zurücksetzen",
+    "description": "Tastenkürzel zurücksetzen-Schaltfläche"
   }
 }

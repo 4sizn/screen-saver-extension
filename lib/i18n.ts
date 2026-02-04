@@ -1,14 +1,16 @@
+import { browser } from 'wxt/browser';
+
 /**
  * i18n utility for getting localized messages
- * Uses chrome.i18n API to get messages from _locales
+ * Uses browser.i18n API to get messages from _locales
  */
 export function getMessage(key: string, substitutions?: string | string[]): string {
-  return chrome.i18n.getMessage(key, substitutions) || key;
+  return browser.i18n.getMessage(key as any, substitutions as any) || key;
 }
 
 /**
  * Get the current UI locale
  */
 export function getUILanguage(): string {
-  return chrome.i18n.getUILanguage();
+  return browser.i18n.getUILanguage();
 }

@@ -65,7 +65,7 @@ async function updateIconState(tabId: number, url?: string) {
     });
   } else {
     // Enable icon for normal pages
-    const isActive = getActivationState(tabId);
+    const isActive = await getActivationState(tabId);
     await browser.action.setIcon({
       tabId,
       path: {
@@ -176,17 +176,17 @@ export default defineBackground({
         const tabId = sender.tab.id;
 
         // Deactivate - silent (no notification, no sound)
-        setActivationState(tabId, false);
+        setActivationState(tabId, false).then(() => {
+          // Update badge to gray (inactive)
+          browser.action.setBadgeBackgroundColor({
+            color: '#6B7280',
+            tabId: tabId
+          });
 
-        // Update badge to gray (inactive)
-        browser.action.setBadgeBackgroundColor({
-          color: '#6B7280',
-          tabId: tabId
-        });
-
-        // Send deactivate message to content script to remove overlay
-        browser.tabs.sendMessage(tabId, { type: 'DEACTIVATE' } as Message).catch(error => {
-          console.log('Could not send deactivate message:', error);
+          // Send deactivate message to content script to remove overlay
+          browser.tabs.sendMessage(tabId, { type: 'DEACTIVATE' } as Message).catch(error => {
+            console.log('Could not send deactivate message:', error);
+          });
         });
       }
 
@@ -209,11 +209,11 @@ export default defineBackground({
         return;
       }
 
-      const isActive = getActivationState(tab.id);
+      const isActive = await getActivationState(tab.id);
 
       if (isActive) {
         // Deactivate - silent (no notification, no sound)
-        setActivationState(tab.id, false);
+        await setActivationState(tab.id, false);
 
         // Update badge to gray (inactive)
         await browser.action.setBadgeBackgroundColor({
@@ -231,7 +231,7 @@ export default defineBackground({
 
       } else {
         // Activate - loud feedback (notification + sound)
-        setActivationState(tab.id, true);
+        await setActivationState(tab.id, true);
 
         // Update badge to green (active)
         await browser.action.setBadgeBackgroundColor({
@@ -268,38 +268,11 @@ export default defineBackground({
       clearTabState(tabId);
     });
 
-    // Track the previously active tab to handle screen saver state
-    let previousActiveTabId: number | null = null;
-
     // Update icon state when tab is activated
     browser.tabs.onActivated.addListener(async (activeInfo) => {
-      // Deactivate screen saver on previous tab when switching tabs
-      if (previousActiveTabId !== null && previousActiveTabId !== activeInfo.tabId) {
-        const wasActive = getActivationState(previousActiveTabId);
-        if (wasActive) {
-          setActivationState(previousActiveTabId, false);
-
-          // Update previous tab's badge to gray
-          browser.action.setBadgeBackgroundColor({
-            color: '#6B7280',
-            tabId: previousActiveTabId
-          }).catch(() => {
-            // Tab might have been closed, ignore error
-          });
-
-          // Send deactivate message to previous tab
-          browser.tabs.sendMessage(previousActiveTabId, { type: 'DEACTIVATE' } as Message).catch(() => {
-            // Could not send message, tab might be closed
-          });
-        }
-      }
-
       // Update current tab's icon state
       const tab = await browser.tabs.get(activeInfo.tabId);
       await updateIconState(activeInfo.tabId, tab.url);
-
-      // Remember this tab as the currently active one
-      previousActiveTabId = activeInfo.tabId;
     });
 
     // Update icon state when tab URL changes or page loads
@@ -357,12 +330,6 @@ export default defineBackground({
 
     // Initialize badge on startup - set correct state for all tabs
     browser.tabs.query({}).then(async tabs => {
-      // Find the currently active tab
-      const activeTab = tabs.find(tab => tab.active);
-      if (activeTab?.id) {
-        previousActiveTabId = activeTab.id;
-      }
-
       // Update icon state for all tabs
       for (const tab of tabs) {
         if (tab.id) {
