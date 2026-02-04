@@ -39,7 +39,8 @@
   transform: translate(-50%, -50%);
   z-index: 2147483648;
 
-  font-size: 6rem;
+  /* 브라우저 크기에 따라 텍스트 크기 자동 조절 (최소 3rem, 최대 10rem) */
+  font-size: clamp(3rem, 8vw, 10rem);
   font-weight: 700;
   font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
 
@@ -50,12 +51,7 @@
   letter-spacing: 0.05em;
   user-select: none;
   pointer-events: none;
-}
 
-@media (max-width: 768px) {
-  .digital-clock { font-size: 4rem; }
-}
-
-@media (max-width: 480px) {
-  .digital-clock { font-size: 3rem; }
+  /* 시간을 한 줄로 표시 */
+  white-space: nowrap;
 }

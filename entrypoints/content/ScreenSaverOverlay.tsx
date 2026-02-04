@@ -1,9 +1,34 @@
 import { useEffect, useState } from 'react';
 import { browser } from 'wxt/browser';
-import { displaySettings, clockSettings } from '@/lib/settingsStorage';
-import type { DisplaySettings, ClockSettings } from '@/lib/settingsStorage';
+import { displaySettings, clockSettings, hotkeySettings } from '@/lib/settingsStorage';
+import type { DisplaySettings, ClockSettings, HotkeySettings } from '@/lib/settingsStorage';
 import type { GetRandomImageResponse } from '@/lib/messages';
 import DigitalClock from './components/DigitalClock';
+
+/**
+ * Convert keyboard event to standardized hotkey string
+ */
+function eventToHotkeyString(event: KeyboardEvent): string {
+  const parts: string[] = [];
+
+  if (event.ctrlKey || event.metaKey) {
+    parts.push(event.ctrlKey ? 'Ctrl' : 'Meta');
+  }
+  if (event.altKey) parts.push('Alt');
+  if (event.shiftKey) parts.push('Shift');
+
+  // Get the key name (capitalize first letter for consistency)
+  let key = event.key;
+  if (key === ' ') key = 'Space';
+  if (key.length === 1) key = key.toUpperCase();
+
+  // Don't add modifier keys as the main key
+  if (!['Control', 'Alt', 'Shift', 'Meta'].includes(key)) {
+    parts.push(key);
+  }
+
+  return parts.join('+');
+}
 
 export default function ScreenSaverOverlay() {
   const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error'>('loading');
@@ -16,6 +41,10 @@ export default function ScreenSaverOverlay() {
     enabled: false,
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   });
+  const [hotkeys, setHotkeys] = useState<HotkeySettings>({
+    activateKey: '',
+    deactivateKey: 'Escape',
+  });
 
   // Load image and settings on mount
   useEffect(() => {
@@ -24,14 +53,16 @@ export default function ScreenSaverOverlay() {
         console.log('[ScreenSaver] Requesting image from background script...');
 
         // Load settings and request image from background in parallel
-        const [loadedSettings, loadedClock, imageResponse] = await Promise.all([
+        const [loadedSettings, loadedClock, loadedHotkeys, imageResponse] = await Promise.all([
           displaySettings.getValue(),
           clockSettings.getValue(),
+          hotkeySettings.getValue(),
           browser.runtime.sendMessage({ type: 'GET_RANDOM_IMAGE' }) as Promise<GetRandomImageResponse>,
         ]);
 
         setSettings(loadedSettings);
         setClock(loadedClock);
+        setHotkeys(loadedHotkeys);
         console.log('[ScreenSaver] Image response:', imageResponse.success ? 'success' : 'failed');
 
         if (imageResponse.success && imageResponse.dataUrl) {
@@ -52,10 +83,15 @@ export default function ScreenSaverOverlay() {
     // No cleanup needed for data URLs (they're not object URLs)
   }, []);
 
-  // ESC key handler - registered on window for reliable capture
+  // Deactivate key handler - registered on window for reliable capture
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      const pressedKey = eventToHotkeyString(e);
+
+      // Check if pressed key matches the deactivate hotkey
+      if (hotkeys.deactivateKey && pressedKey === hotkeys.deactivateKey) {
+        e.preventDefault();
+        e.stopPropagation();
         // Notify background to deactivate
         browser.runtime.sendMessage({ type: 'DEACTIVATE' });
       }
@@ -66,7 +102,7 @@ export default function ScreenSaverOverlay() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [hotkeys.deactivateKey]);
 
   return (
     <div
