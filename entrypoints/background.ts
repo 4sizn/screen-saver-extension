@@ -20,6 +20,7 @@ function isRestrictedUrl(url?: string): boolean {
 
   const restrictedDomains = [
     'chrome.google.com/webstore',
+    'chromewebstore.google.com',
     'microsoftedge.microsoft.com/addons',
     'accounts.google.com',
     'myaccount.google.com',

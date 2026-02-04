@@ -367,7 +367,8 @@ Chrome의 보안 정책상 일부 페이지에서는 확장 프로그램이 동�
 - **view-source:** - 소스 보기 페이지
 
 #### 제한된 도메인
-- **chrome.google.com/webstore** - Chrome Web Store
+- **chrome.google.com/webstore** - Chrome Web Store (구 URL)
+- **chromewebstore.google.com** - Chrome Web Store (신 URL)
 - **microsoftedge.microsoft.com/addons** - Edge 확장 프로그램 스토어
 - **accounts.google.com** - Google 계정 로그인 페이지
 - **myaccount.google.com** - Google 계정 관리 페이지
@@ -411,6 +412,7 @@ function isRestrictedUrl(url?: string): boolean {
 
   const restrictedDomains = [
     'chrome.google.com/webstore',
+    'chromewebstore.google.com',
     'microsoftedge.microsoft.com/addons',
     'accounts.google.com',
     'myaccount.google.com',
